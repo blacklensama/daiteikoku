@@ -1,0 +1,13 @@
+<newObj>
+	<weapon picture="test.png" science="ÇýÖð½¢" name="12´çÖ÷ÅÚ" country="japan" info="ÇýÖð½¢ÉÏ³£¼ûµÄÎä×°" cost="100" kind="Ö÷ÅÚ">
+		<addInfo attr="fire" add="10"/>
+		<addInfo attr="airDef" add="4"/>
+	</weapon>
+	<weapon picture="test.png" science="ÇýÖð½¢" name="7.7mm¶Ô¿Õ»úï¥" country="japan" info="ÇýÖð½¢ÉÏ³£¼ûµÄ·À¿ÕÎä×°" cost="100" kind="·À¿Õ»úÇ¹">
+		<addInfo attr="airDef" add="5"/>
+	</weapon>
+	<weapon picture="test.png" science="ÇýÖð½¢" name="7cm¸Ö°å" country="japan" info="ÇýÖð½¢ÉÏÃæ³£¼ûµ½¸Ö°å" cost="200" kind="×°¼×">
+		<addInfo attr="def" add="3"/>
+		<addInfo attr="hp" add="20"/>
+	</weapon>
+</newObj>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>  
+<UI>  
+    <Items>  
+		<Item kind="DIV" name="test10" x="60"  y="60"  picture="etama6.png" movePicture="etama2.png" functionName="void testClick()" priority="10"
+			isContent="true" script="void testClick(){Print(&quot;Hello world&quot;);}">
+				<function name="test10click" funcName="void test10Click()" script="void test10Click(){Print(&quot;Hello world&quot;);}"/>
+				<function name="test10liftclick" funcName="void test10LiftClick()" script="void test10LiftClick(){Print(&quot;Hello world&quot;);}"/>
+		</Item>
+        <Item kind="DIV" name="test" x="10"  y="10"  picture="etama6.png" movePicture="etama2.png" functionName="void testClick()" uiName="test10" priority = "10" isContent="true" script="void testClick(){Print(&quot;Hello world&quot;);}">
+		</Item>
+		<Item kind="DIV" name="test1" x="300"  y="300"  picture="etama6.png" movePicture="etama2.png" functionName="void testClick()" priority = "2" isContent="false" script="void testClick(){Print(&quot;Hello world&quot;);}">
+			<function name="test1click" funcName="void test2Click()" script="void test2Click(){Print(&quot;Hello world2&quot;);setGameStatus(kTrig_PlayGalGame);}"/>
+			<function name="test1liftclick" funcName="void test2LiftClick()" script="void test2LiftClick(){Print(&quot;Hello world2&quot;);}"/>
+		</Item>
+		<Item kind="Pic" name="test2" x="200" y="200" picture="mysha256x256.png" priority="2">
+		</Item>
+		<Item kind="DIV" name="test3" x="400"  y="100"  picture="etama6.png" movePicture="etama2.png" functionName="void testClick()" priority = "2" isContent="true" script="void testClick(){Print(&quot;Hello world&quot;);}">
+			<function name="test3click" funcName="void test3Click()" script="void test3Click(){Print(&quot;Hello world3&quot;);}"/>
+			<function name="test3liftclick" funcName="void test3LiftClick()" script="void test3LiftClick(){Print(&quot;Hello world3&quot;);}"/>
+		</Item>
+    </Items>  
+</UI>   

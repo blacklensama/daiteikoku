@@ -1,0 +1,23 @@
+<newObj>
+	<ship country="japan" level="驱逐舰" name="吹雪" science="驱逐舰" picture="test.png">
+		<att airAtt="2" airDef="3" attSS="3" def="2" fire="3" hp="10" locked="20" mission="1" torperdo="3"/>
+		<weapon info="火力加成">
+			<addInfo attr="fire" add="5"/>
+		</weapon>
+		<weapon info="防空加成">
+			<addInfo attr="airDef" add='1'/>
+		</weapon>
+	</ship>
+	<ship country="japan" level="重巡" name="最上" science="重巡洋舰" picture="test.png">
+	<att airAtt="2" airDef="3" attSS="3" def="2" fire="3" hp="10" locked="20" mission="1" torperdo="3"/>
+		<weapon info="火力加成">
+			<addInfo attr="fire" add="5"/>
+		</weapon>
+		<weapon info="防空加成">
+			<addInfo attr="airDef" add='3'/>
+		</weapon>
+		<weapon info="防空加成">
+			<addInfo attr="airDef" add='1'/>
+		</weapon>
+	</ship>
+</newObj>

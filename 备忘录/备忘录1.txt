@@ -1,0 +1,22 @@
+目前进度：完成手势识别，下一步为扩展UI脚本的script事件，然后是全局的script事件，鼠标手势脚本应该属于全局的脚本，目前2套方案：
+	1.8种分别绑定？
+	2.map<func， IScript> 来绑定？如果
+	目前肯定是需要一个class来管理这些全局绑定
+需要修改systemEventManager的update，由void 改为 itor，以方便在update里面删除对应的event
+
+UI事件绑定的修改：改成map<func， IScript>？func命名规则，UIname+func，然后如何响应进入事件？还有离开的事件？中间如何过度？
+1周吧
+
+需要修改systemEvent里面增加事件或者是状态？就是在播放动画时候，将systemEventManager设置为不响应事件的状态。播放动画的实现？脚本，bool active（Point& x，color） 播放完成 return false else return true？ 然后UI状态中根据这个结果设置事件？
+1周
+
+目前UI需要添加的是能够拖拽的控件：其特性为响应mousedown事件和mouseup事件。如果需要改成xaml那种效果可能需要发射的支持，需要在C++实现反射（工程量可能太大，并且技术上没有实现方法），技术方法利用矩形判断是否相交来确定能否在mouseup事件发生后，能否保持将来的位子
+预计工期1周？
+
+下个阶段的计划：修改游戏脚本，参考kag
+预期工期为1-2个月
+
+完成UI编辑器：C# wpf 生成xml脚本
+预期工期为2个月
+
+争取年前完成这些东西吧

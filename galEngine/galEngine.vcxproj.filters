@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\gal">
+      <UniqueIdentifier>{8863ac08-c435-4694-92d6-2757d14ae2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\gal\AS">
+      <UniqueIdentifier>{2cc2bd80-3883-4bc2-a3b5-ecb18e25b6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\gal\font">
+      <UniqueIdentifier>{939ddc9f-b60b-4518-a862-02e9562cc955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\gal\parse">
+      <UniqueIdentifier>{759e4a9a-d2a1-4a27-8625-b6b6ea9aba1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\gal\resource">
+      <UniqueIdentifier>{fe98dbda-0a1a-4b0a-b07a-8a7930011a03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\gal\system">
+      <UniqueIdentifier>{d399bdda-083d-46ba-82c6-4aa27884f261}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\gal\UI">
+      <UniqueIdentifier>{7d4d7a46-d139-4934-adf9-9a7f90d74e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal">
+      <UniqueIdentifier>{eaf894c7-ba52-44b6-ad36-8e90986b544c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\allegroAddon">
+      <UniqueIdentifier>{5ede7330-c24f-44c6-9fa9-f4b31511268e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\AS">
+      <UniqueIdentifier>{c24c298b-1761-4659-b768-c02226288e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\font">
+      <UniqueIdentifier>{1bb410c3-6c8b-4440-8e3c-52fea6b019ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\parse">
+      <UniqueIdentifier>{26901c8a-a6a6-4648-aaa9-3b3937603f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\resource">
+      <UniqueIdentifier>{2abd5a4f-ce96-41cd-839e-f1bb2e11ac9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\system">
+      <UniqueIdentifier>{7b9de128-b16e-4e74-9f4a-1d4eca79ae37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\UI">
+      <UniqueIdentifier>{ab7a2225-ee0a-47ed-82ae-5d8509e2a07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\xiayulib">
+      <UniqueIdentifier>{a150dfb5-16b5-4a23-b1af-4ab4501c9511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gal\xml">
+      <UniqueIdentifier>{17a4fa35-f4e4-46df-810c-d7e37130b9e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\slg">
+      <UniqueIdentifier>{02922159-ccc9-456b-bbcd-72df6d40f3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\slg">
+      <UniqueIdentifier>{82eb8c02-bb87-48c5-a9d7-8766fb03a200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\ui">
+      <UniqueIdentifier>{5216a30f-6307-49f6-91e7-f1906e4949a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\slg">
+      <UniqueIdentifier>{af88b887-6f76-44cb-892e-7515565edcca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\slg\ship">
+      <UniqueIdentifier>{599f7c62-2601-485a-b037-602de013caa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\slg\captain">
+      <UniqueIdentifier>{36bb759d-d23e-4729-aeb2-d2d99559f25a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\slg\weapon">
+      <UniqueIdentifier>{a709362e-858d-4731-b599-1fafd80337d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\slg\science">
+      <UniqueIdentifier>{cdb3ec53-0a6f-44a9-b108-585f7d456c8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\slg\area">
+      <UniqueIdentifier>{449d7b81-c753-4495-8c97-4b97305ea762}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="xiayulib\xiayu.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuDouble.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuFloat.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuInt.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuObject.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\stdafx.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="fps.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="font.h">
+      <Filter>头文件\gal\font</Filter>
+    </ClInclude>
+    <ClInclude Include="fontString.h">
+      <Filter>头文件\gal\font</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayuAllegroAddon.h">
+      <Filter>头文件\gal\allegroAddon</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuWString.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuWChar.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ENUM.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="sysConfig.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="keyManager.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="stringManager.h">
+      <Filter>头文件\gal\font</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuString.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuChar.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayulib\xiayuAddon.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="resourceManager.h">
+      <Filter>头文件\gal\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="parse.h">
+      <Filter>头文件\gal\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>头文件\gal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="style.h">
+      <Filter>头文件\gal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="gameManage.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="UIParse.h">
+      <Filter>头文件\gal\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
+      <Filter>头文件\gal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml.h">
+      <Filter>头文件\gal\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml_iterators.h">
+      <Filter>头文件\gal\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml_print.h">
+      <Filter>头文件\gal\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml_utils.h">
+      <Filter>头文件\gal\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="UIBase.h">
+      <Filter>头文件\gal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="xiayuDump.h">
+      <Filter>头文件\gal\xiayulib</Filter>
+    </ClInclude>
+    <ClInclude Include="systemEvent.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>头文件\gal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml.hpp">
+      <Filter>头文件\gal\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="pugiconfig.hpp">
+      <Filter>头文件\gal\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="ASEngine.h">
+      <Filter>头文件\gal\system</Filter>
+    </ClInclude>
+    <ClInclude Include="scriptstdstring.h">
+      <Filter>头文件\gal\AS</Filter>
+    </ClInclude>
+    <ClInclude Include="angelscript.h">
+      <Filter>头文件\gal\AS</Filter>
+    </ClInclude>
+    <ClInclude Include="scripthelper.h">
+      <Filter>头文件\gal\AS</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件\gal</Filter>
+    </ClInclude>
+    <ClInclude Include="gameInfo.h">
+      <Filter>头文件\slg</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>头文件\slg</Filter>
+    </ClInclude>
+    <ClInclude Include="Science.h">
+      <Filter>头文件\slg</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="myGame.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fps.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="font.cpp">
+      <Filter>源文件\gal\font</Filter>
+    </ClCompile>
+    <ClCompile Include="fontString.cpp">
+      <Filter>源文件\gal\font</Filter>
+    </ClCompile>
+    <ClCompile Include="sysConfig.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="keyManager.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="stringManager.cpp">
+      <Filter>源文件\gal\font</Filter>
+    </ClCompile>
+    <ClCompile Include="resourceManager.cpp">
+      <Filter>源文件\gal\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="parse.cpp">
+      <Filter>源文件\gal\parse</Filter>
+    </ClCompile>
+    <ClCompile Include="background.cpp">
+      <Filter>源文件\gal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="style.cpp">
+      <Filter>源文件\gal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="gameManage.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="UIParse.cpp">
+      <Filter>源文件\gal\parse</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle.cpp">
+      <Filter>源文件\gal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIBase.cpp">
+      <Filter>源文件\gal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="systemEvent.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>源文件\gal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ASEngine.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="scriptstdstring.cpp">
+      <Filter>源文件\gal\AS</Filter>
+    </ClCompile>
+    <ClCompile Include="ASTestFunction.h">
+      <Filter>头文件\gal\AS</Filter>
+    </ClCompile>
+    <ClCompile Include="ASTestFunction.cpp">
+      <Filter>源文件\gal\AS</Filter>
+    </ClCompile>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>源文件\gal\system</Filter>
+    </ClCompile>
+    <ClCompile Include="scripthelper.cpp">
+      <Filter>源文件\gal\AS</Filter>
+    </ClCompile>
+    <ClCompile Include="gameInfo.cpp">
+      <Filter>源文件\slg</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>源文件\slg</Filter>
+    </ClCompile>
+    <ClCompile Include="Science.cpp">
+      <Filter>源文件\slg</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.ini">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\备忘录.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="weapon\weaponIndex.txt">
+      <Filter>资源文件\slg\weapon</Filter>
+    </Text>
+    <Text Include="ship\shipIndex.txt">
+      <Filter>资源文件\slg\ship</Filter>
+    </Text>
+    <Text Include="science\scienceIndex.txt">
+      <Filter>资源文件\slg\science</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="ui\test.xml">
+      <Filter>资源文件\ui</Filter>
+    </Xml>
+    <Xml Include="science\japan.xml">
+      <Filter>资源文件\slg\science</Filter>
+    </Xml>
+    <Xml Include="weapon\japan.xml">
+      <Filter>资源文件\slg\weapon</Filter>
+    </Xml>
+    <Xml Include="ship\japan.xml">
+      <Filter>资源文件\slg\ship</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>

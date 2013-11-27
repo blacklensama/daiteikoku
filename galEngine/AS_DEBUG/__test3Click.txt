@@ -1,0 +1,25 @@
+void test3Click()
+
+Temps: 7
+
+Variables: 
+ 007: string {noname}
+
+
+- 1,19 -
+    0   7 *    SUSPEND
+    1   7 *    STR      6         (l:12 s:"Hello worl")
+    2   9 *    CALLSYS  32           (const string& _string_factory_(const int, const uint8&))
+    4   7 *    PshRPtr
+    5   8 *    PSF      v7
+    6   9 *    CALLSYS  34           (void string::_beh_0_(const string&in))
+    8   7 *    ObjInfo  v7, 1
+    8   7 *    PSF      v7
+    9   8 *    CALLSYS  71           (void Print(string&in))
+   11   7 *    PSF      v7
+   12   8 *    CALLSYS  35           (void string::_beh_1_())
+- 1,42 -
+   14   7 *    ObjInfo  v7, 0
+   14   7 *    SUSPEND
+   15   7 * 0:
+   15   7 *    RET      0

@@ -1,0 +1,31 @@
+UIMessage ScriptTest(UIMessage)
+
+Temps: 1
+
+Variables: 
+ -001: UIMessage temp
+ 000: UIMessage {noname param}
+
+
+- 1,40 -
+    0   1 *    VarDecl  0
+    0   1 *    SUSPEND
+    1   1 *    SetV4    v1, 0xa          (i:10, f:1.4013e-044)
+    3   1 *    LoadRObjR v-1, v0, 67108877
+    6   1 *    WRTV4    v1
+- 1,58 -
+    7   1 *    SUSPEND
+    8   1 *    SetV4    v1, 0xa          (i:10, f:1.4013e-044)
+   10   1 *    LoadRObjR v-1, v4, 67108877
+   13   1 *    WRTV4    v1
+- 1,75 -
+   14   1 *    SUSPEND
+   15   1 *    PshVPtr  v-1
+   16   2 *    PshVPtr  v0
+   17   3 *    COPY     v2, 67108877
+   19   2 *    PopPtr
+   20   1 * {
+   20   1 * }
+   20   1 * 0:
+   20   1 *    FREE     v-1, 81546016
+   22   1 *    RET      2

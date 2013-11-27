@@ -1,0 +1,29 @@
+void test2Click()
+
+Temps: 7, 8
+
+Variables: 
+ 007: string {noname}
+
+
+- 1,19 -
+    0   8 *    SUSPEND
+    1   8 *    STR      5         (l:12 s:"Hello worl")
+    2  10 *    CALLSYS  32           (const string& _string_factory_(const int, const uint8&))
+    4   8 *    PshRPtr
+    5   9 *    PSF      v7
+    6  10 *    CALLSYS  34           (void string::_beh_0_(const string&in))
+    8   8 *    ObjInfo  v7, 1
+    8   8 *    PSF      v7
+    9   9 *    CALLSYS  71           (void Print(string&in))
+   11   8 *    PSF      v7
+   12   9 *    CALLSYS  35           (void string::_beh_1_())
+- 1,41 -
+   14   8 *    ObjInfo  v7, 0
+   14   8 *    SUSPEND
+   15   8 *    PshC4    0x1          (i:1, f:1.4013e-045)
+   17   9 *    CALLSYS  72           (void setGameStatus(EnumGameStatue))
+- 1,75 -
+   19   8 *    SUSPEND
+   20   8 * 0:
+   20   8 *    RET      0

@@ -1,0 +1,12 @@
+<newObj>
+	<captain name="东乡" country="japan">
+		<level level="1" picture="test.png" headpicture="test.png" command="200" >
+			<skill info="全属性加成" effect="all+5%"/>
+			<skill info="全属性加成" effect="all+5%"/>
+			<skill info="hp加成" effect="all+5%"/>
+			<shipAttr info="说明">
+				<addInfo attr="hp" add="12"/>
+			</shipAttr>
+		</level>
+	</captain>
+</newObj>

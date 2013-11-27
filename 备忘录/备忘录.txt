@@ -1,0 +1,41 @@
+功能需求：
+1.剧本展示打字机效果，具体可以在游戏中设置
+2.不断按键可以将演出跳过
+3.具有剧本跳跃功能
+
+近期目标：
+1.将galEngine完成
+细化：
+1.完成string管理类，
+2.设计游戏脚本，不用太复杂
+3.设计立绘等效果
+
+galEngine应该由以下几部分组成:
+1.stringManager:用于管理历史文本和当前文本
+2.Parse:用于读取分析脚本，采取解析性脚本，脚本样式可以采取xml类似的格式,
+	Parse作用是给stringManager填充文本
+3.UIManager:由以下组成
+	a.historyUI,用于历史文本的展示
+		historyUI的组成：滚动条，蓝色（半透明）背景，上下箭头
+	b.menuUI,用菜单
+	c.galUI,用于游戏中UI
+4.ResourceManager:用于管理各种图片资源，采用map<wstring, bitmap>的格式，用于索引图片（完成)
+
+脚本需求：
+	1.每次默认执行到下一条语句，但是可以通过插入wait这类东西强制在此处停止
+	2.脚本执行分为4种，a.渲染效果+绘制图片 b.渲染文字 c.暂停等效果 d.分支选项和转移
+	<auto> </auto> //讲渲染模式调整为auto
+	<drawbg> "test.png" 100 200 style:" " </drawbg>//按照指定方法绘制背景
+	<draw> 1 "test1.png" 100 200 style:" " </drawP>//在指定图层指定位置按照指定方法绘制指定立绘
+		，高等级的图层将会覆盖低等级的图层
+	<clear> 1 </clear>//清理指定图层
+	<clear> 100 </clear>//清理所有图层
+	<print> "文字" color:"FFFFFFFF"</print>//普通方法绘制文字
+	<printEx> "文字" 100 200 color:"FFFFFFFF"</printEx>//在指定位置绘制文字
+	<wait> //强制停止
+	<bgm>""</bgm>//播放bgm
+	<voice>""</voice>//播放voice 如果有的话
+	<goto> "1.""test1.txt" "2.""test2.txt" "3.""text3.txt" </goto>//跳转
+	<end>//结束 
+
+目前进度：游戏模块基本完成，尚待完成的部分：style格式和style的parse部分。游戏UI部分，时间设定为1周，

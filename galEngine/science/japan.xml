@@ -1,0 +1,10 @@
+<newObj>
+	<science picture="test.png" name="ÇýÖð½¢" country="japan" cost="100">
+		<science picture="test.png" name="´µÑ©ÐÍÇýÖð½¢" country="japan" cost = "200">
+			<science picture="test1.png" name="³õ´º¼¶ÇýÖð½¢" country="japan" cost="400">
+			</science>
+		</science>
+		<science picture="test.png" name="Ñ×Ñô¼¶ÇýÖð½¢" country="japan" cost = "300">
+		</science>
+	</science>
+</newObj>

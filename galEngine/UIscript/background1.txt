@@ -1,0 +1,3 @@
+<drawbg> "temp1.PNG" 100 200 style:" " </drawbg>
+<drawbg> "temp1.PNG" 100 200 style:" " </drawbg>
+<end>

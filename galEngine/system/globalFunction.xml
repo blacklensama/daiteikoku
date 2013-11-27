@@ -1,0 +1,10 @@
+<mousefunction>
+     <function name="func1" funcName="void func1()" script="void func1(){Print(&quot;LeftMove&quot;);}"/>
+     <function name="func2" funcName="void func2()" script="void func2(){Print(&quot;RightMove&quot;);}"/>
+     <function name="func3" funcName="void func3()" script="void func3(){Print(&quot;UpMove&quot;);}"/>
+	 <function name="func4" funcName="void func4()" script="void func4(){Print(&quot;DownMove&quot;);}"/>
+     <bind active="Left" funcName="void func1()"/>
+     <bind active="Right" funcName="void func2()"/>
+	 <bind active="Up" funcName="void func3()"/>
+     <bind active="Down" funcName="void func4()"/>
+</mousefunction>

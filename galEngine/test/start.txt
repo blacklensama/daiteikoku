@@ -1,0 +1,7 @@
+<print> "ÎÄ×Öhello world" color:"FFFFFFFF"</print>
+<print> "ÎÄ×Öhello world test" color:"FFFFFFFF"</print>
+<drawbg> "temp.png" 0 0 style:" test1" </drawbg>
+<draw> 1 "etama6.png" 100 200 style:" test2" </draw>
+<draw> 2 "enemy4.png"  100 200 style:" test3" </draw>
+<clear> 1 </clear>
+<clear> 2 </clear>
