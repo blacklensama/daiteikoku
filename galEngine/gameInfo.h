@@ -99,6 +99,8 @@ struct science//科技
 	string picture;//图片
 	string clickPicture;//点亮以后的图片
 	int cost;//消耗
+	float x;//坐标
+	float y;//坐标
 	vector<science*> nodes;//下节点
 	vector<science*> upnodes;//上节点
 	bool learned;//是否学习了

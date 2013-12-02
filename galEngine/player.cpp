@@ -176,3 +176,34 @@ gameScience::gameScience(string str)
 	SLG_XML_ReSource* t = SLG_XML_ReSource::Instance();
 	s = t->getScienceByCountry(str);
 }
+
+science* gameScience::getScience()
+{
+	return s;
+}
+
+GamePlayer* GamePlayer::_instance = NULL;
+
+GamePlayer* GamePlayer::Instance()
+{
+	if (_instance == NULL)
+	{
+		_instance = new GamePlayer();
+	}
+	return _instance;
+}
+
+gameScience* GamePlayer::getGameScience()
+{
+	return _gsc;
+}
+
+gameCountry* GamePlayer::getGameCountry(string str)
+{
+	return _gcm[str];
+}
+
+GamePlayer::GamePlayer()
+{
+
+}

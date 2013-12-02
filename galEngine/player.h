@@ -77,6 +77,9 @@ public:
 	gameScience(string str);
 	bool checkScience(string str);
 	void setScience(string str, bool b);
+	science* getScience();
+	void saveToData();
+	void loadFromData();
 protected:
 private:
 	science* s;
@@ -96,4 +99,23 @@ private:
 	vector<gameArea*> ga;
 	int LibNum;
 	int money;
+};
+
+class GamePlayer
+{
+public:
+	static GamePlayer* Instance();
+	void loadFromData();
+	void saveToData();
+	gameCountry* getGameCountry(string str);
+	gameScience* getGameScience();
+protected:
+	GamePlayer();
+private:
+	static GamePlayer* _instance;
+	gameScience* _gsc;
+	map<string, gameCountry*> _gcm;
+	gameShip* _gs;
+	gameWeapon* _gw;
+	gameCaptain* _gc;
 };

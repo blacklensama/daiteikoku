@@ -2,12 +2,23 @@
 #include "resourceManager.h"
 #include "font.h"
 
-scienceItem::scienceItem(science* s)
+scienceItem::scienceItem(science* s, scienceItem* si)
 {
+	if (si != NULL)
+	{
+		UpperNode.push_back(si);
+	}
 	_s = s;
 	ResourceManager* r = ResourceManager::Instance();
 	_bitmap = r->getBitmap(s->picture);
 	_clickBitmap = r->getBitmap(s->clickPicture);
+	_isClick = s->learned;
+	_p.x = s->x;
+	_p.y = s->y;
+	for (auto i:s->nodes)
+	{
+		nextNode.push_back(new scienceItem(i, this));
+	}
 }
 
 void scienceItem::setPoint(float x, float y)
@@ -16,7 +27,35 @@ void scienceItem::setPoint(float x, float y)
 	_p.y = y;
 }
 
+Point scienceItem::getPoint()
+{
+	Point p = _p;
+	p.x += al_get_bitmap_width(_bitmap)/2;
+	p.y += al_get_bitmap_height(_bitmap)/2;
+	return p;
+}
+
 void scienceItem::draw()
+{
+	drawLine();
+	drawPicture();
+	for (auto i : nextNode)
+	{
+		i->draw();
+	}
+}
+
+void scienceItem::drawLine()
+{
+	ALLEGRO_COLOR c;
+	c.a = c.b = c.g = c.r = 1;
+	for (auto i:nextNode)
+	{
+		al_draw_line(getPoint().x, getPoint().y, i->getPoint().x, i->getPoint().y, c, 1);
+	}
+}
+
+void scienceItem::drawPicture()
 {
 	if (_isClick || _isMoveIn)
 	{
@@ -27,7 +66,7 @@ void scienceItem::draw()
 	}
 	ALLEGRO_COLOR c;
 	c.a = c.b = c.g = c.r = 1;
-	al_draw_text(CharFont::getFont(), c, _p.x, _p.x + al_get_bitmap_height(_bitmap), 0, xiayuWString::s2ws(_s->name).c_str());
+	al_draw_text(CharFont::getFont(), c, getPoint().x, _p.y + al_get_bitmap_height(_bitmap), ALLEGRO_ALIGN_CENTRE, xiayuWString::s2ws(_s->name).c_str());
 }
 
 bool scienceItem::isInUI(Point p)
@@ -54,12 +93,17 @@ void scienceItem::isMoveOut()
 
 void scienceItem::update(systemEvent* e)
 {
+	if (e->remove == true)
+	{
+		return;
+	}
 	switch (e->e)
 	{
 	case kTrig_LeftClickUp:
 		{
 			if (isInUI(e->p))
 			{
+				e->remove = true;
 				if (!_isClick)
 				{
 					_isClick = true;
@@ -81,6 +125,10 @@ void scienceItem::update(systemEvent* e)
 		}
 	default:
 		break;
+	}
+	for (auto i : nextNode)
+	{
+		i->update(e);
 	}
 }
 

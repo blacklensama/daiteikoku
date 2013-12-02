@@ -1,22 +1,18 @@
 
 Total count
-PshC4      : 2
-PSF        : 27
-RET        : 9
-PshRPtr    : 9
-STR        : 9
-CALLSYS    : 38
-SUSPEND    : 20
 
 Never executed
 PopPtr    
 PshGPtr   
+PshC4     
 PshV4     
+PSF       
 SwapPtr   
 NOT       
 PshG4     
 LdGRdR4   
 CALL      
+RET       
 JMP       
 JZ        
 JNZ       
@@ -65,7 +61,11 @@ CMPIf
 CMPIu     
 JMPP      
 PopRPtr   
+PshRPtr   
+STR       
+CALLSYS   
 CALLBND   
+SUSPEND   
 ALLOC     
 FREE      
 LOADOBJ   
@@ -193,15 +193,3 @@ JLowZ
 JLowNZ    
 
 Sequences
-PshC4     , CALLSYS    : 2
-PSF       , CALLSYS    : 27
-RET       , SUSPEND    : 8
-PshRPtr   , PSF        : 9
-STR       , CALLSYS    : 9
-CALLSYS   , PSF        : 18
-CALLSYS   , PshRPtr    : 9
-CALLSYS   , SUSPEND    : 11
-SUSPEND   , PshC4      : 2
-SUSPEND   , RET        : 9
-SUSPEND   , STR        : 9
-LABEL     , SUSPEND    : 1

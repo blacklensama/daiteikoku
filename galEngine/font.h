@@ -51,7 +51,7 @@ public:
 	{
 		if (_font == NULL)
 		{
-			_font = al_load_font("MSYH.TTF", 20, 0);
+			_font = al_load_font("MSYH.TTF", 15, 0);
 		}
 		if (_font == NULL)
 		{

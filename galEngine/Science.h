@@ -7,10 +7,13 @@
 class scienceItem
 {
 public:
-	scienceItem(science*);
+	scienceItem(science* s, scienceItem* si = NULL);
 	void draw();
+	void drawPicture();
+	void drawLine();
 	void update(systemEvent* e);
 	void setPoint(float x, float y);
+	Point getPoint();
 	bool isInUI(Point p);
 	void isMoveIn();
 	void isMoveOut();
@@ -21,6 +24,8 @@ private:
 	science* _s;
 	bool _isClick;
 	bool _isMoveIn;
+	vector<scienceItem*> nextNode;
+	vector<scienceItem*> UpperNode;
 	Point _p;
 };
 

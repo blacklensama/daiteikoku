@@ -151,10 +151,13 @@ science* SLG_XML_ReSource::loadScience(science* sc, xml_node node)
 	science* s = new science();
 	sc->learned = false;
 	s->picture = node.attribute("picture").as_string();
+	s->clickPicture = node.attribute("clickPicture").as_string();
 	s->upnodes.push_back(sc);
 	s->country = node.attribute("country").as_string();
 	s->name = node.attribute("name").as_string();
 	s->cost = node.attribute("cost").as_int();
+	s->x = node.attribute("x").as_float();
+	s->y = node.attribute("y").as_float();
 	auto n = node.select_nodes("child::science");//生成下面的节点
 	for (auto i : n)
 	{
@@ -177,9 +180,12 @@ void SLG_XML_ReSource::loadScience(string filepath)
 		science* sc = new science();
 		sc->learned = false;
 		sc->picture = i.node().attribute("picture").as_string();
+		sc->clickPicture = i.node().attribute("clickPicture").as_string();
 		sc->country = i.node().attribute("country").as_string();
 		sc->cost = i.node().attribute("cost").as_int();
 		sc->name = i.node().attribute("name").as_string();
+		sc->x = i.node().attribute("x").as_float();
+		sc->y = i.node().attribute("y").as_float();
 		auto node = i.node().select_nodes("child::science");
 		//生成自己的节点
 		for (auto j : node)
