@@ -131,8 +131,7 @@ asIScriptFunction* ASEngine::CompileScript(string name, string script, string fu
 
 asIScriptContext* ASEngine::getCtx()
 {
-	ctx->Unprepare();
-	return ctx;
+	return engine->CreateContext();
 }
 
 asIScriptFunction* ASEngine::getFunc(string name)

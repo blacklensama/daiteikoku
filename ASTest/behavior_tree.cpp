@@ -134,3 +134,42 @@ bool ParallelNode::Update()
 		return true;
 	}
 }
+
+ActionNode::ActionNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
+{
+	_nodeKind = Action_Node;
+}
+
+bool ActionNode::Update()
+{
+	if (_runStatus == Running)
+	{
+		for (auto i : _ctxList)
+		{
+			i->Execute();
+		}
+		return true;
+	}else if (_runStatus == Failure)
+	{
+		return false;
+	}else if (_runStatus == Completed)
+	{
+		return true;
+	}
+}
+
+ActionNode::~ActionNode()
+{
+	for (auto i : _ctxList)
+	{
+		i->Release();
+	}
+}
+
+void ActionNode::addFunction(string name, string script)
+{
+	ASEngine* as = ASEngine::Instance();
+	asIScriptContext* ctx = as->getCtx();
+	ctx->Prepare(as->CompileScript(name, script, name, _nodeName));
+	_ctxList.push_back(ctx);
+}

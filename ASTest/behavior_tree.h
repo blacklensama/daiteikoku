@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include "ASEngine.h"
 
 using namespace std;
 
@@ -16,9 +17,9 @@ enum NodeKind
 	CompositeNode_SelectorNode,
 	CompositeNode_SequenceNode,
 	CompositeNode_ParallelNode,
-	DecortaorNode,
-	ConditionNode,
-	ActionNode,
+	Decortaor_Node,
+	Condition_Node,
+	Action_Node,
 };
 
 class BevNode
@@ -67,5 +68,17 @@ public:
 	ParallelNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
 protected:
+private:
+};
+
+class ActionNode:BevNode
+{
+public:
+	ActionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
+	virtual bool Update();
+	virtual ~ActionNode();
+	void addFunction(string name, string script);
+protected:
+	vector<asIScriptContext*> _ctxList;
 private:
 };
