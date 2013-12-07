@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "ASEngine.h"
+#include "systemEvent.h"
 
 using namespace std;
 
@@ -20,6 +21,21 @@ enum NodeKind
 	Decortaor_Node,
 	Condition_Node,
 	Action_Node,
+};
+
+class BlackBoardForScript
+{
+public:
+	static BlackBoardForScript* Instance();
+	void addSystemEvent(systemEvent s);
+	systemEvent getSystemEventByIndex(int num);
+	void removeSystemEventByIndex(int num);
+	int getListLength();
+protected:
+	BlackBoardForScript();
+private:
+	vector<systemEvent> _stList;
+	static BlackBoardForScript* _instance;
 };
 
 class BevNode
@@ -80,5 +96,17 @@ public:
 	void addFunction(string name, string script);
 protected:
 	vector<asIScriptContext*> _ctxList;
+private:
+};
+
+class DecoratorNode:BevNode
+{
+public:
+	DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
+	virtual bool Update();
+	virtual ~DecoratorNode();
+	void addFunction(string name, string script);
+protected:
+	asIScriptContext* _ctx;
 private:
 };

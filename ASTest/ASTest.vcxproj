@@ -13,11 +13,13 @@
   <ItemGroup>
     <ClInclude Include="ASEngine.h" />
     <ClInclude Include="behavior_tree.h" />
+    <ClInclude Include="systemEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASEngine.cpp" />
     <ClCompile Include="behavior_tree.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="systemEvent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CDC27321-09F9-4D8A-B5FB-72E837CAB89D}</ProjectGuid>
