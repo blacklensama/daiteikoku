@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 
 enum EnumTriggerType
 {
@@ -15,15 +16,6 @@ enum EnumTriggerType
 	kTrig_Up,
 	kTrig_Down,
 	kTrig_RightMouseMove
-};
-
-enum EnumGameStatue
-{
-	kTrig_PlayMovie,
-	kTrig_PlayGalGame,
-	kTrig_AutoPlayGalGame,
-	kTrig_PlayActive,
-	kTrig_Menu
 };
 
 struct Point

@@ -11,14 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="angelscript.h" />
     <ClInclude Include="ASEngine.h" />
+    <ClInclude Include="ASFunction.h" />
     <ClInclude Include="behavior_tree.h" />
+    <ClInclude Include="scriptstdstring.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="systemEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASEngine.cpp" />
+    <ClCompile Include="ASFunction.cpp" />
     <ClCompile Include="behavior_tree.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scriptstdstring.cpp" />
     <ClCompile Include="systemEvent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

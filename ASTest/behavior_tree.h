@@ -1,10 +1,7 @@
 #pragma once
-#include <iostream>
-#include <vector>
 #include "ASEngine.h"
 #include "systemEvent.h"
 
-using namespace std;
 
 enum RunStatus
 {

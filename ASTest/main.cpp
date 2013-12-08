@@ -2,5 +2,6 @@
 
 int main()
 {
-	return 0;
+	ASEngine* en = ASEngine::Instance();
+	en->scriptTest("test.as");
 }

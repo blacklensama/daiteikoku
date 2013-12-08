@@ -24,6 +24,18 @@
     <ClInclude Include="systemEvent.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ASFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="angelscript.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scriptstdstring.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="behavior_tree.cpp">
@@ -36,6 +48,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="systemEvent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ASFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scriptstdstring.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

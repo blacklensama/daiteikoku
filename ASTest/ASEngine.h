@@ -1,10 +1,5 @@
 #pragma once
-#include <iostream>
-#include "../galEngine/angelscript.h"
-#include "../galEngine/scriptstdstring.h"
-#include "../galEngine/scripthelper.h"
-#pragma comment(lib, "../galEngine/angelscriptd.lib")
-using namespace std;
+#include "stdafx.h"
 class ASEngine
 {
 public:
@@ -15,10 +10,14 @@ public:
 	asIScriptFunction* getFunc(string mode, string name);
 	asIScriptContext* getCtx();
 	void ReleaseMode(string mode);
+	void scriptTest(string filepath);
 protected:
 	void MessageCallback(const asSMessageInfo &msg);
 	ASEngine();
 private:
+	void RegisteClass();
+	void RegisteFunction();
+	void RegisteEnum();
 	bool hasCompileErrors;
 	asIScriptEngine* engine;
 	static ASEngine* _instance;
