@@ -133,10 +133,13 @@ void ASEngine::RegisteClass()
 void ASEngine::RegisteEnum()
 {
 	int r;
+	//register Enum RunStatus
 	r = engine->RegisterEnum("RunStatus");assert(r>=0);
 	r = engine->RegisterEnumValue("RunStatus", "Completed", Completed);assert(r>=0);
 	r = engine->RegisterEnumValue("RunStatus", "Failure", Failure);assert(r>=0);
 	r = engine->RegisterEnumValue("RunStatus", "Running", Running);assert(r>=0);
+
+	//register Enum EnumTriggerType
 	r = engine->RegisterEnum("EnumTriggerType");assert(r>=0);
 	r = engine->RegisterEnumValue("EnumTriggerType", "kTrig_None", kTrig_None);assert(r>=0);
 	r = engine->RegisterEnumValue("EnumTriggerType", "kTrig_LeftClickUp", kTrig_LeftClickUp);assert(r>=0);

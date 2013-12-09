@@ -212,12 +212,12 @@ void ActionNode::addFunction(string name, string script)
 	_ctxList.push_back(ctx);
 }
 
-DecoratorNode::DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
+ConditionNode::ConditionNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
 {
-	_nodeKind = Decortaor_Node;
+	_nodeKind = Condition_Node;
 }
 
-bool DecoratorNode::Update()
+bool ConditionNode::Update()
 {
 	if (_runStatus == Running)
 	{
@@ -234,16 +234,51 @@ bool DecoratorNode::Update()
 	}
 }
 
-void DecoratorNode::addFunction(string name, string script)
+void ConditionNode::addFunction(string name, string script)
 {
 	ASEngine* as = ASEngine::Instance();
 	_ctx = as->getCtx();
 	_ctx->Prepare(as->CompileScript(name, script, name, _nodeName));
 }
 
-DecoratorNode::~DecoratorNode()
+ConditionNode::~ConditionNode()
 {
 	ASEngine* as = ASEngine::Instance();
 	as->ReleaseMode(_nodeName);
 	_ctx->Release();
+}
+
+DecoratorNode::DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
+{
+	_nodeKind = Decortaor_Node;
+}
+
+bool DecoratorNode::Update()
+{
+	if (_runStatus == Running)
+	{
+		for (auto i:_children)
+		{
+			_listResult.push_back(i->Update());
+		}
+	}else if (_runStatus == Failure)
+	{
+		return false;
+	}else if (_runStatus == Completed)
+	{
+		return true;
+	}
+	return checkResult();
+}
+
+bool DecoratorNode::checkResult()
+{
+	for (auto i : _listResult)
+	{
+		if (!i)
+		{
+			return false;
+		}
+	}
+	return true;
 }

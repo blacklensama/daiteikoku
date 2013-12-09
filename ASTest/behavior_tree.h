@@ -96,14 +96,25 @@ protected:
 private:
 };
 
+class ConditionNode:BevNode
+{
+public:
+	ConditionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
+	virtual bool Update();
+	virtual ~ConditionNode();
+	void addFunction(string name, string script);
+protected:
+	asIScriptContext* _ctx;
+private:
+};
+
 class DecoratorNode:BevNode
 {
 public:
 	DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
-	virtual ~DecoratorNode();
-	void addFunction(string name, string script);
+	virtual bool checkResult();
 protected:
-	asIScriptContext* _ctx;
+	vector<bool> _listResult;
 private:
 };

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "angelscript.h"
 #include "scriptstdstring.h"
+#include "scriptarray.h"
 #include <assert.h>
 #include <string>
 #include <vector>

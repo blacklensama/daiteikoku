@@ -36,6 +36,12 @@
     <ClInclude Include="scriptstdstring.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="scripthelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scriptarray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="behavior_tree.cpp">
@@ -54,6 +60,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="scriptstdstring.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scripthelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scriptarray.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
