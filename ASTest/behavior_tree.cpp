@@ -1,4 +1,5 @@
 #include "behavior_tree.h"
+#include "EnumUtil.h"
 
 BlackBoardForScript* BlackBoardForScript::_instance = NULL;
 
@@ -19,6 +20,11 @@ BlackBoardForScript::BlackBoardForScript()
 int BlackBoardForScript::getListLength()
 {
 	return _stList.size();
+}
+
+void BlackBoardForScript::Release()
+{
+	delete _instance;
 }
 
 void BlackBoardForScript::addSystemEvent(systemEvent s)
@@ -61,6 +67,11 @@ RunStatus BevNode::getRunStatus()
 NodeKind BevNode::getNodeKind()
 {
 	return _nodeKind;
+}
+
+void BevNode::addFunction(string name, string script)
+{
+
 }
 
 BevNode* BevNode::getParent()
@@ -112,6 +123,11 @@ bool SequenceNode::Update()
 	}
 }
 
+SequenceNode::~SequenceNode()
+{
+	cout << "SequenceNode" << endl;
+}
+
 SelectorNode::SelectorNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
 {
 	_nodeKind = CompositeNode_SelectorNode;
@@ -136,6 +152,11 @@ bool SelectorNode::Update()
 	{
 		return true;
 	}
+}
+
+SelectorNode::~SelectorNode()
+{
+	cout << "SelectorNode" << endl;
 }
 
 ParallelNode::ParallelNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
@@ -171,6 +192,11 @@ bool ParallelNode::Update()
 	}
 }
 
+ParallelNode::~ParallelNode()
+{
+	cout << "ParallelNode" << endl;
+}
+
 ActionNode::ActionNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
 {
 	_nodeKind = Action_Node;
@@ -197,18 +223,18 @@ bool ActionNode::Update()
 ActionNode::~ActionNode()
 {
 	ASEngine* as = ASEngine::Instance();
-	as->ReleaseMode(_nodeName);
 	for (auto i : _ctxList)
 	{
 		i->Release();
 	}
+	cout << "delect action" << endl;
 }
 
 void ActionNode::addFunction(string name, string script)
 {
 	ASEngine* as = ASEngine::Instance();
 	asIScriptContext* ctx = as->getCtx();
-	ctx->Prepare(as->CompileScript(name, script, name, _nodeName));
+	ctx->Prepare(as->CompileScript(name, script, _nodeName));
 	_ctxList.push_back(ctx);
 }
 
@@ -238,19 +264,20 @@ void ConditionNode::addFunction(string name, string script)
 {
 	ASEngine* as = ASEngine::Instance();
 	_ctx = as->getCtx();
-	_ctx->Prepare(as->CompileScript(name, script, name, _nodeName));
+	_ctx->Prepare(as->CompileScript(name, script, _nodeName));
 }
 
 ConditionNode::~ConditionNode()
 {
 	ASEngine* as = ASEngine::Instance();
-	as->ReleaseMode(_nodeName);
 	_ctx->Release();
+	cout << "delect conditionNode" << endl;
 }
 
 DecoratorNode::DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents /* = NULL */):BevNode(nodeName, runStatus, parents)
 {
 	_nodeKind = Decortaor_Node;
+	_ctx = NULL;
 }
 
 bool DecoratorNode::Update()
@@ -281,4 +308,107 @@ bool DecoratorNode::checkResult()
 		}
 	}
 	return true;
+}
+
+void DecoratorNode::addFunction(string name, string script)
+{
+	if (script=="")
+	{
+		return;
+	}
+	ASEngine* as = ASEngine::Instance();
+	_ctx = as->getCtx();
+	_ctx->Prepare(as->CompileScript(name, script, _nodeName));
+}
+
+DecoratorNode::~DecoratorNode()
+{
+	cout << "DecoratorNode" << endl;
+	ASEngine* as = ASEngine::Instance();
+	if (_ctx != NULL)
+	{
+		_ctx->Release();
+	}
+}
+
+BehaviorTreeObject::BehaviorTreeObject()
+{
+	head = NULL;
+}
+
+bool BehaviorTreeObject::Update()
+{
+	return head->Update();
+}
+
+BehaviorTreeObject::~BehaviorTreeObject()
+{
+	delete head;
+}
+
+BevNode* ILoadFromXml::loadFromXml(string path)
+{
+	xml_document doc;
+	if (!doc.load_file(path.c_str()))
+	{
+		return NULL;
+	}
+	xml_node node = doc.child("newObj").child("Node");
+	return loadFromNode(node);
+}
+
+BevNode* ILoadFromXml::loadFromNode(xml_node node, BevNode* parents/* =NULL */)
+{
+	BevNode* n = NULL;
+	string nodeKind = node.attribute("nodeKind").as_string();
+	string nodeName = node.attribute("nodeName").as_string();
+	string runStatus = node.attribute("runStatus").as_string();
+	NodeKind kind = (NodeKind)EnumUtil::getEnumValue(nodeKind);
+	RunStatus status = (RunStatus)EnumUtil::getEnumValue(runStatus);
+	string script = node.attribute("script").as_string();
+	switch (kind)
+	{
+	case Action_Node:
+		{
+			n = new ActionNode(nodeName, status, parents);
+			break;
+		}
+	case CompositeNode_ParallelNode:
+		{
+			n = new ParallelNode(nodeName, status, parents);
+			break;
+		}
+	case CompositeNode_SelectorNode:
+		{
+			n = new SelectorNode(nodeName, status, parents);
+			break;
+		}
+	case CompositeNode_SequenceNode:
+		{
+			n = new SequenceNode(nodeName, status, parents);
+			break;
+		}
+	case Condition_Node:
+		{
+			n = new ConditionNode(nodeName, status, parents);
+			break;
+		}
+	case Decortaor_Node:
+		{
+			n = new DecoratorNode(nodeName, status, parents);
+			break;
+		}
+	default:
+		break;
+	}
+	if (!n)
+	{
+		return n;
+	}
+	n->addFunction("void main()", script);
+	for (auto i : node.children())
+	{
+		n->addChildren(loadFromNode(i, n));
+	}
+	return n;
 }

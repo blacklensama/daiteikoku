@@ -18,7 +18,7 @@ void PrintNum(float num)
 	cout << num << endl;
 }
 
-BlackBoardForScript getBlackBoard()
+BlackBoardForScript* getBlackBoard()
 {
-	return *BlackBoardForScript::Instance();
+	return BlackBoardForScript::Instance();
 }

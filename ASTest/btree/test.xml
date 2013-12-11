@@ -1,0 +1,10 @@
+<newObj>
+	<Node nodeName="test1" nodeKind="CompositeNode_SelectorNode" runStatus="Running">
+		<Node nodeName="test2" nodeKind="Decortaor_Node" runStatus="Running">
+			<Node nodeName="test3" nodeKind="Condition_Node" runStatus="Running" script="bool main(){return true;}">
+			</Node>
+			<Node nodeName="test4" nodeKind="Action_Node" runStatus="Running" script='bool main(){Print("this is test4 Node"); return true;}'>
+			</Node>
+		</Node>
+	</Node>
+</newObj>

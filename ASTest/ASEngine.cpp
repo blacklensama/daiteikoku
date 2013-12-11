@@ -1,7 +1,6 @@
 #include "ASEngine.h"
 #include "ASFunction.h"
 
-
 ASEngine* ASEngine::_instance = NULL;
 
 ASEngine* ASEngine::Instance()
@@ -82,15 +81,14 @@ void ASEngine::ListFunctions(string mode)
 	}
 }
 
-asIScriptFunction* ASEngine::CompileScript(string name, string script, string funcname, string mode)
+asIScriptFunction* ASEngine::CompileScript(string name, string script, string mode)
 {
 	int r;
 
-	asIScriptModule *mod = engine->GetModule(mode.c_str(), asGM_CREATE_IF_NOT_EXISTS);
-
-	asIScriptFunction* func = 0;
-	r = mod->CompileFunction(name.c_str(), script.c_str(), 0, asCOMP_ADD_TO_MODULE, &func);assert(r>0);
-	return func;
+	asIScriptModule *mod = engine->GetModule(mode.c_str(), asGM_ALWAYS_CREATE);
+	r = mod->AddScriptSection(name.c_str(), &script[0]);assert(r >= 0);
+	r = mod->Build();assert(r>=0);
+	return mod->GetFunctionByDecl("bool main()");
 }
 
 asIScriptFunction* ASEngine::getFunc(string mode, string name)
@@ -101,11 +99,6 @@ asIScriptFunction* ASEngine::getFunc(string mode, string name)
 asIScriptContext* ASEngine::getCtx()
 {
 	return engine->CreateContext();
-}
-
-void ASEngine::ReleaseMode(string mode)
-{
-	engine->DiscardModule(mode.c_str());
 }
 
 void ASEngine::RegisteClass()
@@ -124,10 +117,12 @@ void ASEngine::RegisteClass()
 	r = engine->RegisterObjectProperty("systemEvent", "int key", asOFFSET(systemEvent, key));assert(r >= 0);
 
 	//register BlackBoard class
-	r = engine->RegisterObjectType("BlackBoard", sizeof(BlackBoardForScript), asOBJ_APP_CLASS|asOBJ_POD|asOBJ_VALUE);assert(r>=0);
+	r = engine->RegisterObjectType("BlackBoard", 0, asOBJ_REF|asOBJ_NOCOUNT);assert(r>=0);
 	r = engine->RegisterObjectMethod("BlackBoard", "int getListLength()", asMETHOD(BlackBoardForScript, getListLength), asCALL_THISCALL);assert(r>=0);
 	r = engine->RegisterObjectMethod("BlackBoard", "void removeSystemEventByIndex(int num)", asMETHOD(BlackBoardForScript, removeSystemEventByIndex), asCALL_THISCALL);assert(r>=0);
 	r = engine->RegisterObjectMethod("BlackBoard", "systemEvent getSystemEventByIndex(int num)", asMETHOD(BlackBoardForScript, getSystemEventByIndex), asCALL_THISCALL);assert(r>=0);
+	//r = engine->RegisterGlobalProperty("BlackBoard@ blackBoard", b);assert(r>=0);
+	r = engine->RegisterObjectBehaviour("BlackBoard",  asBEHAVE_FACTORY, "BlackBoard@ f()", asFUNCTION(getBlackBoard), asCALL_CDECL);assert(r >= 0);
 }
 
 void ASEngine::RegisteEnum()
@@ -158,10 +153,9 @@ void ASEngine::RegisteEnum()
 void ASEngine::RegisteFunction()
 {
 	int r;
-	r = engine->RegisterGlobalFunction("void Print(string &in)", asFUNCTION(PrintString), asCALL_CDECL);assert(r >= 0);
-	r = engine->RegisterGlobalFunction("void Print(float num)", asFUNCTION(PrintNum), asCALL_CDECL);assert(r >= 0);
-	r = engine->RegisterGlobalFunction("void yield()", asFUNCTION(yield), asCALL_CDECL);assert(r>=0);
-	r = engine->RegisterGlobalFunction("BlackBoard getBlackBoard()", asFUNCTION(getBlackBoard), asCALL_CDECL);assert(r>=0);
+	r = engine->RegisterGlobalFunction("void Print(string &in)", asFUNCTION(PrintString), asCALL_CDECL  );assert(r >= 0);
+	r = engine->RegisterGlobalFunction("void Print(float num)", asFUNCTION(PrintNum), asCALL_CDECL  );assert(r >= 0);
+	r = engine->RegisterGlobalFunction("void yield()", asFUNCTION(yield), asCALL_CDECL  );assert(r>=0);
 }
 
 void ASEngine::scriptTest(string filepath)
@@ -187,4 +181,14 @@ void ASEngine::scriptTest(string filepath)
 	_ctx->Prepare(func);
 	_ctx->Execute();
 	_ctx->Release();
+}
+
+void ASEngine::Release()
+{
+	delete _instance;
+}
+
+ASEngine::~ASEngine()
+{
+	engine->Release();
 }

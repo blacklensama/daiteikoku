@@ -15,6 +15,9 @@
     <ClInclude Include="ASEngine.h" />
     <ClInclude Include="ASFunction.h" />
     <ClInclude Include="behavior_tree.h" />
+    <ClInclude Include="EnumUtil.h" />
+    <ClInclude Include="pugiconfig.hpp" />
+    <ClInclude Include="pugixml.hpp" />
     <ClInclude Include="scriptarray.h" />
     <ClInclude Include="scripthelper.h" />
     <ClInclude Include="scriptstdstring.h" />
@@ -25,7 +28,9 @@
     <ClCompile Include="ASEngine.cpp" />
     <ClCompile Include="ASFunction.cpp" />
     <ClCompile Include="behavior_tree.cpp" />
+    <ClCompile Include="EnumUtil.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="scriptarray.cpp" />
     <ClCompile Include="scripthelper.cpp" />
     <ClCompile Include="scriptstdstring.cpp" />

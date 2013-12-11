@@ -7,4 +7,4 @@ void yield();
 
 void PrintNum(float num);
 
-BlackBoardForScript getBlackBoard();
+BlackBoardForScript* getBlackBoard();

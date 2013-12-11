@@ -3,6 +3,17 @@
 #include "systemEvent.h"
 
 
+class BevNode;
+
+class ILoadFromXml
+{
+public:
+	virtual BevNode* loadFromXml(string path);
+	virtual BevNode* loadFromNode(xml_node node, BevNode* parents=NULL);
+protected:
+private:
+};
+
 enum RunStatus
 {
 	Completed,
@@ -28,6 +39,7 @@ public:
 	systemEvent getSystemEventByIndex(int num);
 	void removeSystemEventByIndex(int num);
 	int getListLength();
+	static void Release();
 protected:
 	BlackBoardForScript();
 private:
@@ -46,6 +58,7 @@ public:
 	virtual void setRunStatus(RunStatus rs);
 	virtual RunStatus getRunStatus();
 	virtual NodeKind getNodeKind();
+	virtual void addFunction(string name, string script);
 	virtual void addChildren(BevNode* b);
 	virtual ~BevNode();
 protected:
@@ -57,64 +70,81 @@ protected:
 private:
 };
 
-class SequenceNode:BevNode
+class SequenceNode:public BevNode
 {
 public:
 	SequenceNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
+	~SequenceNode();
 protected:
 private:
 };
 
-class SelectorNode:BevNode
+class SelectorNode:public BevNode
 {
 public:
 	SelectorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
+	~SelectorNode();
 protected:
 private:
 };
 
-class ParallelNode:BevNode
+class ParallelNode:public BevNode
 {
 public:
 	ParallelNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
+	~ParallelNode();
 protected:
 private:
 };
 
-class ActionNode:BevNode
+class ActionNode:public BevNode
 {
 public:
 	ActionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
-	virtual ~ActionNode();
+	~ActionNode();
 	void addFunction(string name, string script);
 protected:
 	vector<asIScriptContext*> _ctxList;
 private:
 };
 
-class ConditionNode:BevNode
+class ConditionNode:public BevNode
 {
 public:
 	ConditionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
-	virtual ~ConditionNode();
+	~ConditionNode();
 	void addFunction(string name, string script);
 protected:
 	asIScriptContext* _ctx;
 private:
 };
 
-class DecoratorNode:BevNode
+class DecoratorNode:public BevNode
 {
 public:
 	DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
 	virtual bool checkResult();
+	void addFunction(string name, string script);
+	~DecoratorNode();
 protected:
 	vector<bool> _listResult;
+	asIScriptContext* _ctx;
 private:
+};
+
+class BehaviorTreeObject:public ILoadFromXml
+{
+public:
+	BehaviorTreeObject();
+	bool Update();
+	~BehaviorTreeObject();
+protected:
+private:
+	BevNode* head;
 };
