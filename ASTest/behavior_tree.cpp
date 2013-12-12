@@ -69,7 +69,7 @@ NodeKind BevNode::getNodeKind()
 	return _nodeKind;
 }
 
-void BevNode::addFunction(string name, string script)
+void BevNode::addFunction(string name, string script, string funcName)
 {
 
 }
@@ -230,11 +230,11 @@ ActionNode::~ActionNode()
 	cout << "delect action" << endl;
 }
 
-void ActionNode::addFunction(string name, string script)
+void ActionNode::addFunction(string name, string script, string funcName)
 {
 	ASEngine* as = ASEngine::Instance();
 	asIScriptContext* ctx = as->getCtx();
-	ctx->Prepare(as->CompileScript(name, script, _nodeName));
+	ctx->Prepare(as->CompileScript(name, script, _nodeName, funcName));
 	_ctxList.push_back(ctx);
 }
 
@@ -247,8 +247,6 @@ bool ConditionNode::Update()
 {
 	if (_runStatus == Running)
 	{
-		BlackBoardForScript* bb = BlackBoardForScript::Instance();
-		_ctx->SetArgObject(0, bb);
 		_ctx->Execute();
 		return _ctx->GetReturnQWord()==1;
 	}else if (_runStatus == Failure)
@@ -260,11 +258,11 @@ bool ConditionNode::Update()
 	}
 }
 
-void ConditionNode::addFunction(string name, string script)
+void ConditionNode::addFunction(string name, string script, string funcName)
 {
 	ASEngine* as = ASEngine::Instance();
 	_ctx = as->getCtx();
-	_ctx->Prepare(as->CompileScript(name, script, _nodeName));
+	_ctx->Prepare(as->CompileScript(name, script, _nodeName, funcName));
 }
 
 ConditionNode::~ConditionNode()
@@ -310,7 +308,7 @@ bool DecoratorNode::checkResult()
 	return true;
 }
 
-void DecoratorNode::addFunction(string name, string script)
+void DecoratorNode::addFunction(string name, string script, string funcName)
 {
 	if (script=="")
 	{
@@ -318,7 +316,7 @@ void DecoratorNode::addFunction(string name, string script)
 	}
 	ASEngine* as = ASEngine::Instance();
 	_ctx = as->getCtx();
-	_ctx->Prepare(as->CompileScript(name, script, _nodeName));
+	_ctx->Prepare(as->CompileScript(name, script, _nodeName, funcName));
 }
 
 DecoratorNode::~DecoratorNode()
@@ -366,6 +364,7 @@ BevNode* ILoadFromXml::loadFromNode(xml_node node, BevNode* parents/* =NULL */)
 	NodeKind kind = (NodeKind)EnumUtil::getEnumValue(nodeKind);
 	RunStatus status = (RunStatus)EnumUtil::getEnumValue(runStatus);
 	string script = node.attribute("script").as_string();
+	string funcName = node.attribute("scriptName").as_string();
 	switch (kind)
 	{
 	case Action_Node:
@@ -405,7 +404,7 @@ BevNode* ILoadFromXml::loadFromNode(xml_node node, BevNode* parents/* =NULL */)
 	{
 		return n;
 	}
-	n->addFunction("void main()", script);
+	n->addFunction("main", script, funcName);
 	for (auto i : node.children())
 	{
 		n->addChildren(loadFromNode(i, n));

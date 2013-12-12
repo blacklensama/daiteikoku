@@ -58,7 +58,7 @@ public:
 	virtual void setRunStatus(RunStatus rs);
 	virtual RunStatus getRunStatus();
 	virtual NodeKind getNodeKind();
-	virtual void addFunction(string name, string script);
+	virtual void addFunction(string name, string script, string funcName);
 	virtual void addChildren(BevNode* b);
 	virtual ~BevNode();
 protected:
@@ -106,7 +106,7 @@ public:
 	ActionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
 	~ActionNode();
-	void addFunction(string name, string script);
+	void addFunction(string name, string script, string funcName);
 protected:
 	vector<asIScriptContext*> _ctxList;
 private:
@@ -118,7 +118,7 @@ public:
 	ConditionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
 	~ConditionNode();
-	void addFunction(string name, string script);
+	void addFunction(string name, string script, string funcName);
 protected:
 	asIScriptContext* _ctx;
 private:
@@ -130,7 +130,7 @@ public:
 	DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
 	virtual bool Update();
 	virtual bool checkResult();
-	void addFunction(string name, string script);
+	void addFunction(string name, string script, string funcName);
 	~DecoratorNode();
 protected:
 	vector<bool> _listResult;

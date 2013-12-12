@@ -1,7 +1,7 @@
 #include "ASFunction.h"
 void PrintString(string &str)
 {
-	cout << str;
+	cout << str << endl;
 }
 
 void yield()

@@ -81,14 +81,14 @@ void ASEngine::ListFunctions(string mode)
 	}
 }
 
-asIScriptFunction* ASEngine::CompileScript(string name, string script, string mode)
+asIScriptFunction* ASEngine::CompileScript(string name, string script, string mode, string funcname)
 {
 	int r;
 
 	asIScriptModule *mod = engine->GetModule(mode.c_str(), asGM_ALWAYS_CREATE);
 	r = mod->AddScriptSection(name.c_str(), &script[0]);assert(r >= 0);
 	r = mod->Build();assert(r>=0);
-	return mod->GetFunctionByDecl("bool main()");
+	return mod->GetFunctionByDecl(funcname.c_str());
 }
 
 asIScriptFunction* ASEngine::getFunc(string mode, string name)

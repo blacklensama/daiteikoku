@@ -6,7 +6,7 @@ public:
 	static ASEngine* Instance();
 	void ConfigureEngine(asIScriptEngine* engine);
 	void ListFunctions(string mode);
-	asIScriptFunction* CompileScript(string name, string script, string mode);
+	asIScriptFunction* CompileScript(string name, string script, string mode, string funcName);
 	asIScriptFunction* getFunc(string mode, string name);
 	asIScriptContext* getCtx();
 	void scriptTest(string filepath);

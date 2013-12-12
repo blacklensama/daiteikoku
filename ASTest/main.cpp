@@ -11,6 +11,7 @@ int main()
 	en->scriptTest("test.as");
 	BehaviorTreeObject obj;
 	auto i = obj.loadFromXml("btree/test.xml");
+	i->Update();
 	delete i;
 	en->Release();
 	BlackBoardForScript::Release();
