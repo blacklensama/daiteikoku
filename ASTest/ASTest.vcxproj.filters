@@ -13,75 +13,105 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\behaviorTree">
+      <UniqueIdentifier>{6d8e8d87-413f-4938-8dd7-d97b8d7f2d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ASEngine">
+      <UniqueIdentifier>{c1480abb-a307-4f17-9cd1-3c2d517a15d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\xml">
+      <UniqueIdentifier>{a320b108-8b3e-4b8a-82b5-db041ae69e78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\behaviorTree">
+      <UniqueIdentifier>{a8853ac3-71f2-4fd0-bb56-6d29950295ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ASEngine">
+      <UniqueIdentifier>{fe4a571c-90e6-465e-88b9-40b18b71229d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\xml">
+      <UniqueIdentifier>{dc7815af-9e8e-4dc3-820e-1bfee6d13db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ui">
+      <UniqueIdentifier>{9a05b78a-f128-4f02-9d8f-6093b60d789c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ui">
+      <UniqueIdentifier>{ac7c5c0b-bae2-4ad2-b788-5c3ece6e1287}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="behavior_tree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ASEngine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="systemEvent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ASFunction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="behavior_tree.h">
+      <Filter>头文件\behaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="ASEngine.h">
+      <Filter>头文件\ASEngine</Filter>
+    </ClInclude>
     <ClInclude Include="angelscript.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\ASEngine</Filter>
     </ClInclude>
-    <ClInclude Include="scriptstdstring.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="scripthelper.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="ASFunction.h">
+      <Filter>头文件\ASEngine</Filter>
     </ClInclude>
     <ClInclude Include="scriptarray.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\ASEngine</Filter>
     </ClInclude>
-    <ClInclude Include="pugiconfig.hpp">
-      <Filter>头文件</Filter>
+    <ClInclude Include="scripthelper.h">
+      <Filter>头文件\ASEngine</Filter>
     </ClInclude>
-    <ClInclude Include="pugixml.hpp">
-      <Filter>头文件</Filter>
+    <ClInclude Include="scriptstdstring.h">
+      <Filter>头文件\ASEngine</Filter>
     </ClInclude>
     <ClInclude Include="EnumUtil.h">
+      <Filter>头文件\behaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml.hpp">
+      <Filter>头文件\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="pugiconfig.hpp">
+      <Filter>头文件\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="AllegroAddon.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systemEvent.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>头文件\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="behavior_tree.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ASEngine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="systemEvent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ASFunction.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="scriptstdstring.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="scripthelper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="scriptarray.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="pugixml.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="behavior_tree.cpp">
+      <Filter>源文件\behaviorTree</Filter>
     </ClCompile>
     <ClCompile Include="EnumUtil.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\behaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="ASEngine.cpp">
+      <Filter>源文件\ASEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ASFunction.cpp">
+      <Filter>源文件\ASEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="scripthelper.cpp">
+      <Filter>源文件\ASEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="scriptarray.cpp">
+      <Filter>源文件\ASEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="scriptstdstring.cpp">
+      <Filter>源文件\ASEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>源文件\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="systemEvent.cpp">
+      <Filter>源文件\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
