@@ -17,6 +17,8 @@
     <ClInclude Include="ASFunction.h" />
     <ClInclude Include="behavior_tree.h" />
     <ClInclude Include="EnumUtil.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageManager.h" />
     <ClInclude Include="pugiconfig.hpp" />
     <ClInclude Include="pugixml.hpp" />
     <ClInclude Include="scriptarray.h" />
@@ -31,6 +33,8 @@
     <ClCompile Include="ASFunction.cpp" />
     <ClCompile Include="behavior_tree.cpp" />
     <ClCompile Include="EnumUtil.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="scriptarray.cpp" />

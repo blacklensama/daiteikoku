@@ -21,9 +21,14 @@ enum EnumTriggerType
 struct Point
 {
 	Point();
+	Point(float v);
 	Point(float x1, float y1);
-	EnumTriggerType operator-(Point p);
-	bool operator==(Point p);
+	Point(const Point& p);
+	Point& operator=(const Point& p);
+	EnumTriggerType operator-(Point& p);
+	Point& operator-(const Point& p);
+	Point& operator+(const Point& p);
+	bool operator==(const Point& p);
 	float x;
 	float y;
 };

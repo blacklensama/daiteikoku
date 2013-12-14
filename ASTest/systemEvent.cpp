@@ -5,13 +5,31 @@ Point::Point()
 	x = y = 0;
 }
 
+Point::Point(float v)
+{
+	x = y = v;
+}
+
+Point::Point(const Point& p)
+{
+	x = p.x;
+	y = p.y;
+}
+
 Point::Point(float x1, float y1)
 {
 	x = x1;
 	y = y1;
 }
 
-EnumTriggerType Point::operator-(Point p)
+Point& Point::operator=(const Point& p)
+{
+	x = p.x;
+	y = p.y;
+	return *this;
+}
+
+EnumTriggerType Point::operator-(Point& p)
 {
 	float dx = p.x - x;
 	float dy = p.y - y;
@@ -57,7 +75,21 @@ EnumTriggerType Point::operator-(Point p)
 	return kTrig_None;
 }
 
-bool Point::operator==(Point p)
+Point& Point::operator+(const Point& p)
+{
+	x += p.x;
+	y += p.y;
+	return *this;
+}
+
+Point& Point::operator-(const Point& p)
+{
+	x -= p.x;
+	y -= p.y;
+	return *this;
+}
+
+bool Point::operator==(const Point& p)
 {
 	if (p.x == x && p.y == y)
 	{

@@ -81,6 +81,12 @@
     <ClInclude Include="Widget.h">
       <Filter>头文件\ui</Filter>
     </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -111,6 +117,12 @@
       <Filter>源文件\xml</Filter>
     </ClCompile>
     <ClCompile Include="systemEvent.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
       <Filter>源文件\ui</Filter>
     </ClCompile>
   </ItemGroup>
