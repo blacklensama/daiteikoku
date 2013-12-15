@@ -26,3 +26,9 @@ private:
 	Point _p;//ÖÐÐÄ×ø±ê
 	ImageInfo _info;
 };
+
+static void DrawImage(Image* i, float c);
+static void DrawImage(Image* i);
+static void DrawImage(Image* i, Point p);
+static void DrawImage(Image* i, Point p, float c);
+

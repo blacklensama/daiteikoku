@@ -41,3 +41,27 @@ Point Image::getPoint()
 {
 	return _p;
 }
+
+void DrawImage(Image* i)
+{
+	Point p = i->getPoint();
+	al_draw_bitmap(i->getBitmap(), p.x, p.y, 0);
+}
+
+void DrawImage(Image* i, float c)
+{
+	Point p = i->getPoint();
+	al_draw_tinted_bitmap(i->getBitmap(), al_map_rgba_f(c, c, c ,c), p.x, p.y, 0);
+}
+
+void DrawImage(Image* i, Point p)
+{
+	p = i->getPoint() - p;
+	al_draw_bitmap(i->getBitmap(), p.x, p.y , 0);
+}
+
+void DrawImage(Image* i, Point p, float c)
+{
+	p = i->getPoint() - p;
+	al_draw_tinted_bitmap(i->getBitmap(),al_map_rgba_f(c, c, c ,c), p.x, p.y, 0);
+}
