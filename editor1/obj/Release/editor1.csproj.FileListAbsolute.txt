@@ -1,0 +1,11 @@
+F:\daiteikoku\editor1\bin\Release\editor1.exe
+F:\daiteikoku\editor1\bin\Release\editor1.pdb
+F:\daiteikoku\editor1\obj\Release\MainWindow.baml
+F:\daiteikoku\editor1\obj\Release\MainWindow.g.cs
+F:\daiteikoku\editor1\obj\Release\App.g.cs
+F:\daiteikoku\editor1\obj\Release\editor1_MarkupCompile.cache
+F:\daiteikoku\editor1\obj\Release\editor1.g.resources
+F:\daiteikoku\editor1\obj\Release\editor1.Properties.Resources.resources
+F:\daiteikoku\editor1\obj\Release\editor1.csproj.GenerateResource.Cache
+F:\daiteikoku\editor1\obj\Release\editor1.exe
+F:\daiteikoku\editor1\obj\Release\editor1.pdb

@@ -51,7 +51,7 @@ class BevNode
 {
 public:
 	BevNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update() = 0;
+	virtual bool Update(void* point) = 0;
 	virtual BevNode* getParent();
 	virtual vector<BevNode*> getChild();
 	virtual string getName();
@@ -74,7 +74,7 @@ class SequenceNode:public BevNode
 {
 public:
 	SequenceNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update();
+	virtual bool Update(void* point);
 	~SequenceNode();
 protected:
 private:
@@ -84,7 +84,7 @@ class SelectorNode:public BevNode
 {
 public:
 	SelectorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update();
+	virtual bool Update(void* point);
 	~SelectorNode();
 protected:
 private:
@@ -94,7 +94,7 @@ class ParallelNode:public BevNode
 {
 public:
 	ParallelNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update();
+	virtual bool Update(void* point);
 	~ParallelNode();
 protected:
 private:
@@ -104,7 +104,7 @@ class ActionNode:public BevNode
 {
 public:
 	ActionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update();
+	virtual bool Update(void* point);
 	~ActionNode();
 	void addFunction(string name, string script, string funcName);
 protected:
@@ -116,7 +116,7 @@ class ConditionNode:public BevNode
 {
 public:
 	ConditionNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update();
+	virtual bool Update(void* point);
 	~ConditionNode();
 	void addFunction(string name, string script, string funcName);
 protected:
@@ -128,7 +128,7 @@ class DecoratorNode:public BevNode
 {
 public:
 	DecoratorNode(string nodeName, RunStatus runStatus, BevNode* parents = NULL);
-	virtual bool Update();
+	virtual bool Update(void* point);
 	virtual bool checkResult();
 	void addFunction(string name, string script, string funcName);
 	~DecoratorNode();
@@ -142,7 +142,9 @@ class BehaviorTreeObject:public ILoadFromXml
 {
 public:
 	BehaviorTreeObject();
-	bool Update();
+	BehaviorTreeObject(string str);
+	void reload(string path);
+	bool Update(void* point = NULL);
 	~BehaviorTreeObject();
 protected:
 private:

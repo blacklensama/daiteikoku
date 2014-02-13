@@ -12,7 +12,12 @@ ImageManager* ImageManager::Instance()
 
 ALLEGRO_BITMAP* ImageManager::getBitmap(string str)
 {
-	return _bitmap[str];
+	auto i = _bitmap.find(str);
+	if (i != _bitmap.end())
+	{
+		return i->second;
+	}
+	return NULL;
 }
 
 void ImageManager::loadFromFile(string path)
@@ -40,4 +45,9 @@ ImageManager::~ImageManager()
 	{
 		al_destroy_bitmap(i.second);
 	}
+}
+
+void ImageManager::Release()
+{
+	delete _instance;
 }

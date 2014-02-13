@@ -1,5 +1,6 @@
 #include "ASEngine.h"
 #include "ASFunction.h"
+#include "Widget.h"
 
 ASEngine* ASEngine::_instance = NULL;
 
@@ -123,6 +124,20 @@ void ASEngine::RegisteClass()
 	r = engine->RegisterObjectMethod("BlackBoard", "systemEvent getSystemEventByIndex(int num)", asMETHOD(BlackBoardForScript, getSystemEventByIndex), asCALL_THISCALL);assert(r>=0);
 	//r = engine->RegisterGlobalProperty("BlackBoard@ blackBoard", b);assert(r>=0);
 	r = engine->RegisterObjectBehaviour("BlackBoard",  asBEHAVE_FACTORY, "BlackBoard@ f()", asFUNCTION(getBlackBoard), asCALL_CDECL);assert(r >= 0);
+
+	//register Widget class
+	r = engine->RegisterObjectType("Widget", 0, asOBJ_REF);assert(r>=0);
+	r = engine->RegisterObjectBehaviour("Widget", asBEHAVE_FACTORY, "Widget@ f()", asFUNCTION(Widget_Factory), asCALL_CDECL);assert(r >= 0);
+	r = engine->RegisterObjectBehaviour("Widget", asBEHAVE_ADDREF, "void f()", asMETHOD(Widget, Addref), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectBehaviour("Widget", asBEHAVE_RELEASE, "void f()", asMETHOD(Widget, Release), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "void test()", asMETHOD(Widget, test), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "void draw()", asMETHODPR(Widget, draw, (), void),
+asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "void draw(float c)", asMETHODPR(Widget, draw, (float), void), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "void draw(Point p)", asMETHODPR(Widget, draw, (Point), void), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "void draw(Point p, float c)", asMETHODPR(Widget, draw, (Point, float), void), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "int isInUI(Point p)", asMETHODPR(Widget, isInUI, (Point), int), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("Widget", "int isInUI(float x, float y)", asMETHODPR(Widget, isInUI, (float, float), int), asCALL_THISCALL);assert(r>=0);
 }
 
 void ASEngine::RegisteEnum()

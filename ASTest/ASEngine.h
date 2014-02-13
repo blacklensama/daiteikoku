@@ -10,7 +10,7 @@ public:
 	asIScriptFunction* getFunc(string mode, string name);
 	asIScriptContext* getCtx();
 	void scriptTest(string filepath);
-	void Release();
+	static void Release();
 protected:
 	void MessageCallback(const asSMessageInfo &msg);
 	ASEngine();

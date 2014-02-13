@@ -29,6 +29,7 @@ struct Point
 	Point& operator-(const Point& p);
 	Point& operator+(const Point& p);
 	bool operator==(const Point& p);
+	bool IsInRange(Point& p1, Point& p2);
 	float x;
 	float y;
 };

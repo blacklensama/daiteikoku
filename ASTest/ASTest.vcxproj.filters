@@ -87,6 +87,9 @@
     <ClInclude Include="ImageManager.h">
       <Filter>头文件\ui</Filter>
     </ClInclude>
+    <ClInclude Include="font.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,6 +126,12 @@
       <Filter>源文件\ui</Filter>
     </ClCompile>
     <ClCompile Include="ImageManager.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="font.cpp">
       <Filter>源文件\ui</Filter>
     </ClCompile>
   </ItemGroup>

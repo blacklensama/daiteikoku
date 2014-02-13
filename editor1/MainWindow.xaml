@@ -1,0 +1,317 @@
+﻿<Window x:Class="editor1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:editor1"
+        Name="MyApp"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+            <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
+            <Style x:Key="TabItemFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="3,3,3,1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#F3F3F3" Offset="0"/>
+                <GradientStop Color="#EBEBEB" Offset="0.5"/>
+                <GradientStop Color="#DDDDDD" Offset="0.5"/>
+                <GradientStop Color="#CDCDCD" Offset="1"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#EAF6FD" Offset="0.15"/>
+                <GradientStop Color="#D9F0FC" Offset=".5"/>
+                <GradientStop Color="#BEE6FD" Offset=".5"/>
+                <GradientStop Color="#A7D9F5" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
+            <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
+            <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+            <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+            <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Padding" Value="6,1,6,1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+                <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Grid SnapsToDevicePixels="true">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.69*"/>
+                                    <RowDefinition Height="0.31*"/>
+                                </Grid.RowDefinitions>
+                                <Border x:Name="Bd" BorderThickness="0" CornerRadius="3" BorderBrush="Black" Margin="0" Grid.RowSpan="2" Visibility="Hidden">
+                                    <!--Border.Background>
+                                        < ImageBrush ImageSource="skin/ico/toolbar_pushed.png"/ >
+                                    </Border.Background-->
+                                </Border>
+                                <Border x:Name="fg" BorderThickness="0" CornerRadius="3" BorderBrush="Black" Margin="0" Grid.RowSpan="2" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                    <!--Border.Background>
+                                        <ImageBrush ImageSource="skin/ico/toolbar_hover.png"/>
+                                    </Border.Background-->
+                                </Border>
+                                <TextBlock Margin="0,0.333,0,3.833" TextWrapping="Wrap" VerticalAlignment="Stretch" d:LayoutOverrides="Height" Grid.Row="1" HorizontalAlignment="Center" Text="{TemplateBinding Header}" Foreground="White"/>
+                                <Border x:Name="ico" BorderThickness="0" CornerRadius="3" BorderBrush="Black" Margin="4,4,4.25,0" Grid.RowSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="48" Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true"/>
+                                <Trigger Property="IsSelected" Value="true">
+                                    <Setter Property="Visibility" TargetName="Bd" Value="Visible"/>
+                                    <Setter Property="Panel.ZIndex" TargetName="ico" Value="1"/>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="false"/>
+                                        <Condition Property="IsMouseOver" Value="true"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" TargetName="fg" Value="Visible"/>
+                                    <Setter Property="RenderTransform" TargetName="ico">
+                                        <Setter.Value>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="false"/>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="Padding" Value="4,4,4,4"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+                <Setter Property="Background" Value="#F9F9F9"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabControl}">
+                            <Grid ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                    <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition x:Name="RowDefinition0" Height="Auto" MinHeight="84.5"/>
+                                    <RowDefinition x:Name="RowDefinition1"/>
+                                </Grid.RowDefinitions>
+                                <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="0">
+                                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Opacity="1"/>
+                                </Border>
+                                <Canvas x:Name="HeaderPanel" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" IsItemsHost="True"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="BtreeItemStyle" TargetType="{x:Type my:BTreeItem}">
+                <Setter Property="Width" Value="80"></Setter>
+            </Style>
+            <Style x:Key="MyThumbStyle" TargetType="{x:Type my:MyThumb}">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="50"></Setter>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Foreground" Value="#FFF1F1F1"></Setter>
+            </Style>
+            <Style TargetType="ComboBoxItem">
+                <Setter Property="Background" Value="#FF333337"></Setter>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Background" Value="#FF333337"></Setter>
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Foreground" Value="#FFF1F1F1"></Setter>
+            </Style>
+            <Style TargetType="Canvas">
+                <Setter Property="Background" Value="#FF252526"></Setter>
+            </Style>
+            <Style TargetType="RichTextBox">
+                <Setter Property="Background" Value="#FF252526"></Setter>
+            </Style>
+            <Style TargetType="Run">
+                <Setter Property="Foreground" Value="#FFF1F1F1"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="#FFF1F1F1"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid x:Name="grid">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="文件">
+                    <MenuItem Header="打开">
+                        <MenuItem Header="打开行为树" Click="MenuItem_Open_BTree">
+                            
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="调试" Click="MenuItem_Debug"></MenuItem>
+            </Menu>
+            <TabControl Height="auto">
+                <TabItem Header="test1">
+                    <Grid>
+                        <Canvas Margin="14,19,410,20" Background="Azure">
+                            <StackPanel Name="ToolGroup" Orientation="Vertical">
+                                <Expander Width="80"  Header="test1">
+                                    <StackPanel>
+                                        <my:BTreeItem Style="{StaticResource BtreeItemStyle}" content="test1"></my:BTreeItem>
+                                        <my:BTreeItem Style="{StaticResource BtreeItemStyle}" content="test2"></my:BTreeItem>
+                                        <my:BTreeItem Style="{StaticResource BtreeItemStyle}" content="test3"></my:BTreeItem>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander Width="80" Header="test2"></Expander>
+                            </StackPanel>
+                        </Canvas>
+                        <Canvas HorizontalAlignment="Right" Margin="0,22,5,21" Name="canvas" Width="400" Background="DarkSalmon">
+                        </Canvas>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="行为树设计">
+                    <Grid>
+                        <DockPanel>
+                            <ToolBar DockPanel.Dock="Top">
+                                <Button Content="新建" Click="MenuItem_New_BehaveTree"></Button>
+                                <Button Content="打开" Click="MenuItem_Open_BTree"></Button>
+                                <Button Content="保存" Click="MenuItem_Save_BTree"></Button>
+                                <Button Content="另存为" Click="MenuItem_Save_As_Btree"></Button>
+                            </ToolBar>
+                            <Canvas Background="#FF252526" Width="200"  DockPanel.Dock="Right">
+                                <StackPanel>
+                                    <Expander Header="属性" Foreground="#FFF1F1F1">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock><Run Text="节点名字"/></TextBlock>
+                                                <TextBox x:Name="bindtest1" Text="{Binding SelectedItem.name, ElementName=TreeTest}"  Width="100" Background="#FF333337"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock><Run Text="节点种类"/></TextBlock>
+                                                <ComboBox Width="100"  Background="#FF333337" Text="{Binding SelectedItem.kind, ElementName=TreeTest}" IsEditable="True">
+                                                    <ComboBoxItem>
+                                                        <TextBlock/>
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem >
+                                                        <TextBlock><Run Text="test1"/></TextBlock>
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem>
+                                                        <TextBlock><Run Text="test2"/></TextBlock>
+                                                    </ComboBoxItem>
+                                                </ComboBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock><Run Text="运行状态"/></TextBlock>
+                                                <ComboBox Text="{Binding SelectedItem.status, ElementName=TreeTest}" IsEditable="True">
+                                                    <ComboBoxItem>
+                                                        <TextBlock ><Run Text="Running"/></TextBlock>
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem>
+                                                        <TextBlock ><Run Text="Finish"/></TextBlock>
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem>
+                                                        <TextBlock ><Run Text="Stop"/></TextBlock>
+                                                    </ComboBoxItem>
+                                                </ComboBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock ><Run Text="scriptName"/></TextBlock>
+                                                <TextBox Width="100" Background="#FF333337" Text="{Binding SelectedItem.name, ElementName=TreeTest}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock ><Run Text="script"/></TextBlock>
+                                                <Button Width="100" Content="open" Foreground="#FFF1F1F1"  Background="#FF333337"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Expander>
+                                </StackPanel>
+                            </Canvas>
+                            <Canvas Background="Blue" DockPanel.Dock="Left">
+                                <TreeView Name="TreeTest" HorizontalAlignment="Left" Width="auto">
+                                    <TreeView.ItemTemplate>
+                                        <HierarchicalDataTemplate DataType="{x:Type my:BehaveTree}" ItemsSource="{Binding Path=next}">
+                                            <TextBlock Text="{Binding name}"></TextBlock>
+                                        </HierarchicalDataTemplate>
+                                    </TreeView.ItemTemplate>
+                                    <TreeView.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="添加节点" Click="MenuItem_Click"></MenuItem>
+                                            <MenuItem Header="删除节点" Click="MenuItem_Click_1"></MenuItem>
+                                        </ContextMenu>
+                                    </TreeView.ContextMenu>
+                                </TreeView>
+                            </Canvas>
+                        </DockPanel>
+                  </Grid>
+                </TabItem>
+                <TabItem Header="xml详细">
+                    <Grid>
+                        <Canvas Name="xmlCanvas"  Margin="10">
+                            <RichTextBox  VerticalScrollBarVisibility="Auto" Width="{Binding ElementName=xmlCanvas, Path=ActualWidth}" Height="{Binding ElementName=xmlCanvas, Path=ActualHeight}">
+                                <FlowDocument>
+                                    <Paragraph>
+                                        <Run Name="xmlRun"></Run>
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                        </Canvas>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="AS脚本" Height="23" VerticalAlignment="Top">
+                    <DockPanel>
+                        <ToolBar DockPanel.Dock="Top">
+                            <Button Content="保存" Click="MenuItem_AS_Save"></Button>
+                        </ToolBar>
+                        <RichTextBox x:Name="MyRTB" VerticalScrollBarVisibility="Auto" 
+                                 AcceptsTab="True" Block.LineHeight="1" TextChanged="MyRTB_KeyUp">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Run Text="{Binding ElementName=TreeTest, Path=SelectedItem.script, Mode=OneWay}"></Run>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </DockPanel>
+                </TabItem>
+
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -98,6 +98,18 @@ bool Point::operator==(const Point& p)
 	return false;
 }
 
+bool Point::IsInRange(Point& p1, Point& p2)
+{
+	if (p1.x <= x && x <= p2.x)
+	{
+		if (p1.y <= y && y <= p2.y)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 systemEvent::systemEvent()
 {
 	e = kTrig_None;

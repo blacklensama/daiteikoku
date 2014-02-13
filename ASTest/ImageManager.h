@@ -6,6 +6,7 @@ class ImageManager
 public:
 	static ImageManager* Instance();
 	ALLEGRO_BITMAP* getBitmap(string str);
+	static void Release();
 protected:
 	ImageManager();
 	~ImageManager();

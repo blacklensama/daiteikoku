@@ -102,13 +102,13 @@ SequenceNode::SequenceNode(string nodeName, RunStatus runStatus, BevNode* parent
 	_nodeKind = CompositeNode_SequenceNode;
 }
 
-bool SequenceNode::Update()
+bool SequenceNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
 		for (auto i : _children)
 		{
-			if (!i->Update())
+			if (!i->Update(point))
 			{
 				return false;
 			}
@@ -133,13 +133,13 @@ SelectorNode::SelectorNode(string nodeName, RunStatus runStatus, BevNode* parent
 	_nodeKind = CompositeNode_SelectorNode;
 }
 
-bool SelectorNode::Update()
+bool SelectorNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
 		for (auto i : _children)
 		{
-			if (i->Update())
+			if (i->Update(point))
 			{
 				return true;
 			}
@@ -164,14 +164,14 @@ ParallelNode::ParallelNode(string nodeName, RunStatus runStatus, BevNode* parent
 	_nodeKind = CompositeNode_ParallelNode;
 }
 
-bool ParallelNode::Update()
+bool ParallelNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
 		bool flag = false;
 		for (auto i:_children)
 		{
-			if (i->Update())
+			if (i->Update(point))
 			{
 				flag = true;
 			}
@@ -202,12 +202,16 @@ ActionNode::ActionNode(string nodeName, RunStatus runStatus, BevNode* parents /*
 	_nodeKind = Action_Node;
 }
 
-bool ActionNode::Update()
+bool ActionNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
 		for (auto i : _ctxList)
 		{
+			if (point != NULL)
+			{
+				i->SetArgObject(0, point);
+			}
 			i->Execute();
 		}
 		return true;
@@ -243,10 +247,14 @@ ConditionNode::ConditionNode(string nodeName, RunStatus runStatus, BevNode* pare
 	_nodeKind = Condition_Node;
 }
 
-bool ConditionNode::Update()
+bool ConditionNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
+		if (point != NULL)
+		{
+			_ctx->SetArgObject(0, point);
+		}
 		_ctx->Execute();
 		return _ctx->GetReturnQWord()==1;
 	}else if (_runStatus == Failure)
@@ -278,13 +286,13 @@ DecoratorNode::DecoratorNode(string nodeName, RunStatus runStatus, BevNode* pare
 	_ctx = NULL;
 }
 
-bool DecoratorNode::Update()
+bool DecoratorNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
 		for (auto i:_children)
 		{
-			_listResult.push_back(i->Update());
+			_listResult.push_back(i->Update(point));
 		}
 	}else if (_runStatus == Failure)
 	{
@@ -334,9 +342,20 @@ BehaviorTreeObject::BehaviorTreeObject()
 	head = NULL;
 }
 
-bool BehaviorTreeObject::Update()
+BehaviorTreeObject::BehaviorTreeObject(string str)
 {
-	return head->Update();
+	head = loadFromXml(str);
+}
+
+void BehaviorTreeObject::reload(string path)
+{
+	delete head;
+	head = loadFromXml(path);
+}
+
+bool BehaviorTreeObject::Update(void* point)
+{
+	return head->Update(point);
 }
 
 BehaviorTreeObject::~BehaviorTreeObject()

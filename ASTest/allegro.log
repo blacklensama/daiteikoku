@@ -1,0 +1,17 @@
+system   D            wsystem.c:583  maybe_parent_dir                 [   0.00078] Also searching F:\daiteikoku\
+system   D            wsystem.c:633  _al_win_safe_load_library        [   0.00107] PathFindOnPath found: C:\Windows\system32\d3d9.dll
+system   D            wsystem.c:544  load_library_at_path             [   0.00110] Calling LoadLibrary C:\Windows\system32\d3d9.dll
+system   I            wsystem.c:547  load_library_at_path             [   0.00661] Loaded C:\Windows\system32\d3d9.dll
+d3d      I         d3d_disp.cpp:696  _al_d3d_init_display             [   0.02991] Render-to-texture: 1
+system   I             system.c:252  al_install_system                [   0.02997] Allegro version: 5.0.10
+audio-dsound D           dsound.cpp:244  _dsound_open                     [   0.03009] Loading DirectSound module
+system   D            wsystem.c:583  maybe_parent_dir                 [   0.03015] Also searching F:\daiteikoku\
+system   D            wsystem.c:633  _al_win_safe_load_library        [   0.03032] PathFindOnPath found: C:\Windows\system32\dsound.dll
+system   D            wsystem.c:544  load_library_at_path             [   0.03034] Calling LoadLibrary C:\Windows\system32\dsound.dll
+system   I            wsystem.c:547  load_library_at_path             [   0.03146] Loaded C:\Windows\system32\dsound.dll
+audio-dsound I           dsound.cpp:261  _dsound_open                     [   0.03152] Starting DirectSound...
+audio-dsound D           dsound.cpp:271  _dsound_open                     [   0.06547] DirectSoundCreate8 succeeded
+audio    I              audio.c:288  do_install_audio                 [   0.06725] Using DirectSound driver
+audio-dsound D           dsound.cpp:289  _dsound_close                    [   0.09120] Releasing device
+audio-dsound D           dsound.cpp:291  _dsound_close                    [   0.12812] Released device
+audio-dsound I           dsound.cpp:294  _dsound_close                    [   0.12816] DirectSound closed
