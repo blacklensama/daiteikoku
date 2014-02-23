@@ -42,6 +42,56 @@ void BlackBoardForScript::removeSystemEventByIndex(int num)
 	_stList.erase(_stList.begin() + num);
 }
 
+void BlackBoardForScript::removeAllEvent()
+{
+	_stList.swap(vector<systemEvent>());
+}
+
+NodeMgr* NodeMgr::_instance = NULL;
+
+NodeMgr* NodeMgr::Instance()
+{
+	if (_instance == NULL)
+	{
+		_instance = new NodeMgr();
+	}
+	return _instance;
+}
+
+void NodeMgr::addNode(BevNode* node)
+{
+	_mgr.insert(make_pair(node->getName(), node));
+}
+
+void NodeMgr::clearNode()
+{
+	_mgr.swap(multimap<string, BevNode*>());
+}
+
+void NodeMgr::changeNodeStatic(string name, RunStatus statue)
+{
+	auto i = _mgr.lower_bound(name);
+	if (i != _mgr.end())
+	{
+		i->second->setRunStatus(statue);
+	}
+}
+
+void NodeMgr::Release()
+{
+	delete _instance;
+}
+
+NodeMgr::NodeMgr()
+{
+
+}
+
+NodeMgr::~NodeMgr()
+{
+	clearNode();
+}
+
 BevNode::BevNode(string nodeName, RunStatus runStatus, BevNode* parents)
 {
 	_nodeName = nodeName;
@@ -208,6 +258,10 @@ bool ActionNode::Update(void* point)
 	{
 		for (auto i : _ctxList)
 		{
+			if (i->GetState() == asEXECUTION_FINISHED)
+			{
+				continue;
+			}
 			if (point != NULL)
 			{
 				i->SetArgObject(0, point);
@@ -251,6 +305,10 @@ bool ConditionNode::Update(void* point)
 {
 	if (_runStatus == Running)
 	{
+		if (_ctx->GetState() == asEXECUTION_FINISHED)
+		{
+			_ctx->Prepare(_ctx->GetFunction());
+		}
 		if (point != NULL)
 		{
 			_ctx->SetArgObject(0, point);
@@ -426,7 +484,9 @@ BevNode* ILoadFromXml::loadFromNode(xml_node node, BevNode* parents/* =NULL */)
 	n->addFunction("main", script, funcName);
 	for (auto i : node.children())
 	{
+		NodeMgr* mgr = NodeMgr::Instance();
 		n->addChildren(loadFromNode(i, n));
+		mgr->addNode(n);
 	}
 	return n;
 }

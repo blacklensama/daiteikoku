@@ -1,0 +1,7 @@
+<newObj>
+	<Image name="start" path="Image/start.png">
+	<Image name="load" path="Image/load.png">
+	<Image name="config" path="Image/config.png">
+	<Image name="exit" path="Image/exit.png">
+	<Image name="gallary" path="Image/gallary.png">
+</newObj>

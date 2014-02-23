@@ -216,7 +216,7 @@
                                 <Button Content="保存" Click="MenuItem_Save_BTree"></Button>
                                 <Button Content="另存为" Click="MenuItem_Save_As_Btree"></Button>
                             </ToolBar>
-                            <Canvas Background="#FF252526" Width="200"  DockPanel.Dock="Right">
+                            <Canvas Background="#FF252526" Width="300"  DockPanel.Dock="Right">
                                 <StackPanel>
                                     <Expander Header="属性" Foreground="#FFF1F1F1">
                                         <StackPanel>
@@ -231,10 +231,16 @@
                                                         <TextBlock/>
                                                     </ComboBoxItem>
                                                     <ComboBoxItem >
-                                                        <TextBlock><Run Text="test1"/></TextBlock>
+                                                        <TextBlock><Run Text="CompositeNode_ParallelNode"/></TextBlock>
                                                     </ComboBoxItem>
                                                     <ComboBoxItem>
-                                                        <TextBlock><Run Text="test2"/></TextBlock>
+                                                        <TextBlock><Run Text="Decortaor_Node"/></TextBlock>
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem>
+                                                        <TextBlock><Run Text="Condition_Node"></Run></TextBlock>
+                                                    </ComboBoxItem>
+                                                    <ComboBoxItem>
+                                                        <TextBlock><Run Text="Action_Node"></Run></TextBlock>
                                                     </ComboBoxItem>
                                                 </ComboBox>
                                             </StackPanel>

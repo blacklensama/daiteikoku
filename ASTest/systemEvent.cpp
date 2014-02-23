@@ -29,6 +29,7 @@ Point& Point::operator=(const Point& p)
 	return *this;
 }
 
+/*
 EnumTriggerType Point::operator-(Point& p)
 {
 	float dx = p.x - x;
@@ -74,6 +75,7 @@ EnumTriggerType Point::operator-(Point& p)
 	}
 	return kTrig_None;
 }
+*/
 
 Point& Point::operator+(const Point& p)
 {

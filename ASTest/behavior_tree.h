@@ -39,12 +39,29 @@ public:
 	systemEvent getSystemEventByIndex(int num);
 	void removeSystemEventByIndex(int num);
 	int getListLength();
+	void removeAllEvent();
 	static void Release();
 protected:
 	BlackBoardForScript();
 private:
 	vector<systemEvent> _stList;
 	static BlackBoardForScript* _instance;
+};
+
+class NodeMgr
+{
+public:
+	static NodeMgr* Instance();
+	void addNode(BevNode* node);
+	void clearNode();
+	void changeNodeStatic(string name, RunStatus statue);
+	static void Release();
+protected:
+	NodeMgr();
+	~NodeMgr();
+private:
+	static NodeMgr* _instance;
+	multimap<string, BevNode*> _mgr;
 };
 
 class BevNode

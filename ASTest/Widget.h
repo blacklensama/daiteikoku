@@ -45,13 +45,17 @@ private:
 class WidgetMgr
 {
 public:
-	WidgetMgr();
-	WidgetMgr(string path);
+	static WidgetMgr* Instance();
 	void tick();
 	void loadFromXml(string path);
-	void addWidget(WidgetInfo info);
+	void addWidget(WidgetInfo* info);
 	void clearAll();
+	void reloadXml(string path);
+	static void Release();
 protected:
+	WidgetMgr();
+	~WidgetMgr();
 private:
-	vector<WidgetInfo> _mgr;
+	static WidgetMgr* _instance;
+	vector<WidgetInfo*> _mgr;
 };

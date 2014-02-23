@@ -37,6 +37,12 @@
     <Filter Include="源文件\ui">
       <UniqueIdentifier>{ac7c5c0b-bae2-4ad2-b788-5c3ece6e1287}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\system">
+      <UniqueIdentifier>{e17bb176-92de-4bbb-add3-5465ab32fb46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\system">
+      <UniqueIdentifier>{ef313044-c2fa-4ea3-a335-7e46acd48811}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -90,6 +96,9 @@
     <ClInclude Include="font.h">
       <Filter>头文件\ui</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>头文件\system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -133,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="font.cpp">
       <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>源文件\system</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

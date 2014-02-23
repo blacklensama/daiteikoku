@@ -109,6 +109,10 @@ void DrawMode::DrawImage(Image* i)
 
 void DrawMode::DrawImage(Image* i, float c)
 {
+	if (c >= 1)
+	{
+		c = 1;
+	}
 	Point p = i->getPoint();
 	al_draw_tinted_bitmap(i->getBitmap(), al_map_rgba_f(c, c, c ,c), p.x, p.y, 0);
 }

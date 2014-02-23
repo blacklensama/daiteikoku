@@ -1,0 +1,32 @@
+<newObj>
+	<Node nodeName="test1" nodeKind="CompositeNode_ParallelNode" runStatus="Running">
+		<Node nodeName="test2" nodeKind="Decortaor_Node" runStatus="Running">
+			<Node nodeName="test3" nodeKind="Condition_Node" runStatus="Running" script='
+			bool main(Widget@ i)
+			{	
+				Point p;
+				p.x = 50;
+				p.y = 0;
+				float a = 0;
+				i.draw();
+				while (a <= 1)
+				{
+					a = a + 0.005;
+					p.x = p.x - 50.0/200;
+					i.draw(p, a);
+					yield();
+				}
+				while (true)
+				{
+					i.draw();
+					yield();
+				}
+				return true;
+			}'		scriptName="bool main(Widget@ i)">
+			</Node>
+			<Node nodeName="test4" nodeKind="Action_Node" runStatus="Running" script='bool main(Widget@ i){Print("this is test4 Node"); return true;}'
+				scriptName="bool main(Widget@ i)">
+			</Node>
+		</Node>
+	</Node>
+</newObj>

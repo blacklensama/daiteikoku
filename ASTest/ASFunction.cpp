@@ -1,4 +1,6 @@
 #include "ASFunction.h"
+
+
 void PrintString(string &str)
 {
 	cout << str << endl;
@@ -21,4 +23,9 @@ void PrintNum(float num)
 BlackBoardForScript* getBlackBoard()
 {
 	return BlackBoardForScript::Instance();
+}
+
+WidgetMgr* getWidgetMgr()
+{
+	return WidgetMgr::Instance();
 }

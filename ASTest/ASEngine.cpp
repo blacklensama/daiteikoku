@@ -1,6 +1,5 @@
 #include "ASEngine.h"
 #include "ASFunction.h"
-#include "Widget.h"
 
 ASEngine* ASEngine::_instance = NULL;
 
@@ -125,6 +124,12 @@ void ASEngine::RegisteClass()
 	//r = engine->RegisterGlobalProperty("BlackBoard@ blackBoard", b);assert(r>=0);
 	r = engine->RegisterObjectBehaviour("BlackBoard",  asBEHAVE_FACTORY, "BlackBoard@ f()", asFUNCTION(getBlackBoard), asCALL_CDECL);assert(r >= 0);
 
+
+	//register WidgetMgr class
+	r = engine->RegisterObjectType("WidgetMgr", 0, asOBJ_REF|asOBJ_NOCOUNT);assert(r>=0);
+	r = engine->RegisterObjectBehaviour("WidgetMgr",  asBEHAVE_FACTORY, "WidgetMgr@ f()", asFUNCTION(getWidgetMgr()), asCALL_CDECL);assert(r >= 0);
+	r = engine->RegisterObjectMethod("WidgetMgr", "void reload(string path)", asMETHOD(WidgetMgr, reloadXml), asCALL_THISCALL);assert(r >= 0);
+
 	//register Widget class
 	r = engine->RegisterObjectType("Widget", 0, asOBJ_REF);assert(r>=0);
 	r = engine->RegisterObjectBehaviour("Widget", asBEHAVE_FACTORY, "Widget@ f()", asFUNCTION(Widget_Factory), asCALL_CDECL);assert(r >= 0);
@@ -194,6 +199,8 @@ void ASEngine::scriptTest(string filepath)
 	asIScriptFunction *func = engine->GetModule(0)->GetFunctionByDecl("void test()");assert(func);
 	asIScriptContext* _ctx = engine->CreateContext();
 	_ctx->Prepare(func);
+	_ctx->Execute();
+	_ctx->Prepare(_ctx->GetFunction());
 	_ctx->Execute();
 	_ctx->Release();
 }

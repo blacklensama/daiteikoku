@@ -1,0 +1,32 @@
+<newObj>
+  <Node nodeName="node" nodeKind="CompositeNode_ParallelNode" runStatus="Running" script="" scriptName="">
+    <Node nodeName="drawNode" nodeKind="Action_Node" runStatus="Running" script="bool main(Widget@ i)
+{
+	int time = 0;
+	float color = 0;
+	Point p;
+	p.x = 50;
+	p.y = 0;
+	while (time < 50)
+	{
+		time = time + 1;
+		yield();
+	}
+	while(color <= 1)
+	{
+		color = color + 0.005;
+		p.x = p.x - 50.0/200;
+		i.draw(p, color);
+		yield();
+	}
+	while(true)
+	{
+		i.draw();
+		yield();
+	}
+	return true;
+}
+
+" scriptName="bool main(Widget@ i)" />
+  </Node>
+</newObj>

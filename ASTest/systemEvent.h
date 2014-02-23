@@ -25,7 +25,7 @@ struct Point
 	Point(float x1, float y1);
 	Point(const Point& p);
 	Point& operator=(const Point& p);
-	EnumTriggerType operator-(Point& p);
+	//EnumTriggerType operator-(Point& p);
 	Point& operator-(const Point& p);
 	Point& operator+(const Point& p);
 	bool operator==(const Point& p);

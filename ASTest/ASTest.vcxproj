@@ -16,6 +16,7 @@
     <ClInclude Include="ASEngine.h" />
     <ClInclude Include="ASFunction.h" />
     <ClInclude Include="behavior_tree.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="EnumUtil.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="Image.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="ASEngine.cpp" />
     <ClCompile Include="ASFunction.cpp" />
     <ClCompile Include="behavior_tree.cpp" />
+    <ClCompile Include="config.cpp" />
     <ClCompile Include="EnumUtil.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="Image.cpp" />

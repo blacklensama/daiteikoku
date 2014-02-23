@@ -76,6 +76,7 @@ namespace editor1
             setting.Encoding = Encoding.GetEncoding("gb2312");
             setting.NewLineChars = Environment.NewLine;
             setting.OmitXmlDeclaration = true;
+            setting.NewLineHandling = NewLineHandling.None;
             XmlWriter wx = XmlWriter.Create(file, setting);
             XmlSerializer sz = new XmlSerializer(typeof(NewObj));
             XmlSerializerNamespaces _namespaces = new XmlSerializerNamespaces(

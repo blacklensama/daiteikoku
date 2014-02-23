@@ -79,7 +79,8 @@ WidgetInfo::WidgetInfo(Widget w, string path)
 	_btree.reload(path);
 }
 
-WidgetInfo::WidgetInfo(xml_node& nodes, WidgetInfo* parent):_w(nodes),_btree(nodes.attribute("behaviour").as_string()),_parent(parent)
+WidgetInfo::WidgetInfo(xml_node& nodes, WidgetInfo* parent):
+	_w(nodes),_btree(nodes.attribute("behaviour").as_string()),_parent(parent)
 {
 	auto i = nodes.children();
 	for (auto node : nodes)
@@ -116,6 +117,22 @@ WidgetInfo::~WidgetInfo()
 	_nextNode.swap(vector<WidgetInfo*>());
 }
 
+WidgetMgr* WidgetMgr::_instance = NULL;
+
+WidgetMgr* WidgetMgr::Instance()
+{
+	if (_instance == NULL)
+	{
+		_instance = new WidgetMgr();
+	}
+	return _instance;
+}
+
+void WidgetMgr::Release()
+{
+	delete _instance;
+}
+
 WidgetMgr::WidgetMgr()
 {
 
@@ -125,23 +142,42 @@ void WidgetMgr::tick()
 {
 	for (auto i:_mgr)
 	{
-		i.tick();
+		i->tick();
 	}
 }
 
-void WidgetMgr::addWidget(WidgetInfo info)
+void WidgetMgr::addWidget(WidgetInfo* info)
 {
 	_mgr.push_back(info);
 }
 
 void WidgetMgr::clearAll()
 {
-	_mgr.swap(vector<WidgetInfo>());
+	for (auto i : _mgr)
+	{
+		delete i;
+	}
+	_mgr.swap(vector<WidgetInfo*>());
 }
 
 void WidgetMgr::loadFromXml(string path)
 {
 	xml_document doc;
 	doc.load_file(path.c_str());
-	
+	xml_node root = doc.first_child();
+	for (xml_node node : root.children())
+	{
+		_mgr.push_back(new WidgetInfo(node, NULL));
+	}
+}
+
+void WidgetMgr::reloadXml(string path)
+{
+	clearAll();
+	loadFromXml(path);
+}
+
+WidgetMgr::~WidgetMgr()
+{
+	clearAll();
 }

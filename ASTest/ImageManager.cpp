@@ -23,7 +23,7 @@ ALLEGRO_BITMAP* ImageManager::getBitmap(string str)
 void ImageManager::loadFromFile(string path)
 {
 	xml_document doc;
-	if (!doc.load_file(path.c_str()))
+	if (doc.load_file(path.c_str()))
 	{
 		cout << "can't load the xml file " << path << endl;
 	}
@@ -36,7 +36,7 @@ void ImageManager::loadFromFile(string path)
 
 ImageManager::ImageManager()
 {
-
+	loadFromFile("Image/index.xml");
 }
 
 ImageManager::~ImageManager()

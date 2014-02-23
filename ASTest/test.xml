@@ -1,4 +1,4 @@
 <newObj>
-	<Item bitmap="test.png" x="1" y="2" behaviour="btree/test.xml"> 
-	</Item>
+	<Item bitmap="start" x="100" y="200" behaviour="btree/start.xml"/> 
+	<Item bitmap="load" x="200" y="300" behaviour="btree/load.xml"/>
 </newObj>
