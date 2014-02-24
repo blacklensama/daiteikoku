@@ -10,3 +10,5 @@ void PrintNum(float num);
 BlackBoardForScript* getBlackBoard();
 
 WidgetMgr* getWidgetMgr();
+
+NodeMgr* getNodeMgr();

@@ -35,16 +35,18 @@ class BlackBoardForScript
 {
 public:
 	static BlackBoardForScript* Instance();
-	void addSystemEvent(systemEvent s);
-	systemEvent getSystemEventByIndex(int num);
-	void removeSystemEventByIndex(int num);
+	void addSystemEvent(systemEvent* s);
+	systemEvent* getSystemEventByIndex(EnumTriggerType num);
+	void removeSystemEventByIndex(EnumTriggerType num);
 	int getListLength();
 	void removeAllEvent();
 	static void Release();
 protected:
 	BlackBoardForScript();
+	~BlackBoardForScript();
 private:
-	vector<systemEvent> _stList;
+	//vector<systemEvent> _stList;
+	map<EnumTriggerType, systemEvent*> _stList;
 	static BlackBoardForScript* _instance;
 };
 
@@ -54,7 +56,7 @@ public:
 	static NodeMgr* Instance();
 	void addNode(BevNode* node);
 	void clearNode();
-	void changeNodeStatic(string name, RunStatus statue);
+	void changeNodeStatus(string name, RunStatus statue);
 	static void Release();
 protected:
 	NodeMgr();

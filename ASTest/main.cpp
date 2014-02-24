@@ -5,7 +5,7 @@
 #include "Widget.h"
 #include "ImageManager.h"
 
-#define _DEBUGMODE_ 0
+#define _DEBUGMODE_ 1
 
 void init()
 {
@@ -45,14 +45,19 @@ void Release()
 #if _DEBUGMODE_ == 1
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF|_CRTDBG_ALLOC_MEM_DF);
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
 	init();
-	//ASEngine* en = ASEngine::Instance();
-	//en->scriptTest("test.as");
+	ASEngine* en = ASEngine::Instance();
 	
-	NodeMgr* mgr = NodeMgr::Instance();
+	BlackBoardForScript* bb = BlackBoardForScript::Instance();
+	bb->addSystemEvent(new systemEvent());
+	en->scriptTest("test.as");
+	/*NodeMgr* mgr = NodeMgr::Instance();
 
 	mgr->addNode(new ActionNode("test", Running));
-	mgr->changeNodeStatic("test1", Failure);
+	mgr->changeNodeStatus("test1", Failure);*/
 
 	Release();
 }
@@ -103,52 +108,52 @@ int main()
 			redraw = true;
 		if (event.type == ALLEGRO_EVENT_KEY_DOWN && event.keyboard.keycode != ALLEGRO_KEY_ESCAPE)
 		{
-			systemEvent s;
-			s.e = KTrig_KeyBroadDown;
-			s.key = event.keyboard.keycode;
+			systemEvent* s = new systemEvent();
+			s->e = KTrig_KeyBroadDown;
+			s->key = event.keyboard.keycode;
 			blackboard->addSystemEvent(s);
 		}
 		if (event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode != ALLEGRO_KEY_ESCAPE)
 		{
-			systemEvent s;
-			s.e = kTrig_KeyBroadUp;
-			s.key = event.keyboard.keycode;
+			systemEvent* s = new systemEvent();
+			s->e = kTrig_KeyBroadUp;
+			s->key = event.keyboard.keycode;
 			blackboard->addSystemEvent(s);
 		}
 		if (event.type == ALLEGRO_EVENT_MOUSE_AXES)
 		{
-			systemEvent s;
-			s.p.x = event.mouse.x;
-			s.p.y = event.mouse.y;
-			s.e = kTrig_None;
+			systemEvent* s = new systemEvent();
+			s->p.x = event.mouse.x;
+			s->p.y = event.mouse.y;
+			s->e = kTrig_None;
 			blackboard->addSystemEvent(s);
 		}
 		if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 		{
-			systemEvent s;
+			systemEvent* s = new systemEvent();
 			if (event.mouse.button == 1)
 			{
-				s.e = kTrig_LeftClickDown;
+				s->e = kTrig_LeftClickDown;
 			}else if (event.mouse.button == 3)
 			{
-				s.e = kTrig_RightClickDown;
+				s->e = kTrig_RightClickDown;
 			}
-			s.p.x = event.mouse.x;
-			s.p.y = event.mouse.y;
+			s->p.x = event.mouse.x;
+			s->p.y = event.mouse.y;
 			blackboard->addSystemEvent(s);
 		}
 		if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP)
 		{
-			systemEvent s;
+			systemEvent* s = new systemEvent();
 			if (event.mouse.button == 1)
 			{
-				s.e = kTrig_LeftClickUp;
+				s->e = kTrig_LeftClickUp;
 			}else if (event.mouse.button == 3)
 			{
-				s.e = kTrig_RightClickUp;
+				s->e = kTrig_RightClickUp;
 			}
-			s.p.x = event.mouse.x;
-			s.p.y = event.mouse.y;
+			s->p.x = event.mouse.x;
+			s->p.y = event.mouse.y;
 			blackboard->addSystemEvent(s);
 		}
 		if (redraw && al_is_event_queue_empty(queue)) 

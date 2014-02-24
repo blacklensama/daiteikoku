@@ -27,24 +27,47 @@ void BlackBoardForScript::Release()
 	delete _instance;
 }
 
-void BlackBoardForScript::addSystemEvent(systemEvent s)
+void BlackBoardForScript::addSystemEvent(systemEvent* s)
 {
-	_stList.push_back(s);
+	if (_stList.find(s->e) != _stList.end())
+	{
+		delete _stList[s->e];
+	}
+	_stList[s->e] = s;
 }
 
-systemEvent BlackBoardForScript::getSystemEventByIndex(int num)
+systemEvent* BlackBoardForScript::getSystemEventByIndex(EnumTriggerType num)
 {
-	return _stList[num];
+	auto i = _stList.find(num);
+	if (i != _stList.end())
+	{
+		return i->second;
+	}
+	return NULL;
 }
 
-void BlackBoardForScript::removeSystemEventByIndex(int num)
+void BlackBoardForScript::removeSystemEventByIndex(EnumTriggerType num)
 {
-	_stList.erase(_stList.begin() + num);
+	auto i = _stList.find(num);
+	if (i != _stList.end())
+	{
+		delete i->second;
+		_stList.erase(i);
+	}
 }
 
 void BlackBoardForScript::removeAllEvent()
 {
-	_stList.swap(vector<systemEvent>());
+	for (auto i = _stList.begin(); i != _stList.end();)
+	{
+		delete i->second;
+		i = _stList.erase(i);
+	}
+}
+
+BlackBoardForScript::~BlackBoardForScript()
+{
+	removeAllEvent();
 }
 
 NodeMgr* NodeMgr::_instance = NULL;
@@ -68,7 +91,7 @@ void NodeMgr::clearNode()
 	_mgr.swap(multimap<string, BevNode*>());
 }
 
-void NodeMgr::changeNodeStatic(string name, RunStatus statue)
+void NodeMgr::changeNodeStatus(string name, RunStatus statue)
 {
 	auto i = _mgr.lower_bound(name);
 	if (i != _mgr.end())

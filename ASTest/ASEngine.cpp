@@ -111,24 +111,32 @@ void ASEngine::RegisteClass()
 	r = engine->RegisterObjectProperty("Point", "float y", asOFFSET(Point, y));assert(r >= 0);
 
 	//register systemEvent struct
-	r = engine->RegisterObjectType("systemEvent", sizeof(systemEvent),asOBJ_APP_CLASS|asOBJ_POD|asOBJ_VALUE);assert(r>=0);
+	r = engine->RegisterObjectType("systemEvent", sizeof(systemEvent),asOBJ_REF);assert(r>=0);
 	r = engine->RegisterObjectProperty("systemEvent", "EnumTriggerType e", asOFFSET(systemEvent, e));assert(r >= 0);
 	r = engine->RegisterObjectProperty("systemEvent", "Point p", asOFFSET(systemEvent, p));assert(r >= 0);
 	r = engine->RegisterObjectProperty("systemEvent", "int key", asOFFSET(systemEvent, key));assert(r >= 0);
+	r = engine->RegisterObjectBehaviour("systemEvent", asBEHAVE_FACTORY, "systemEvent@ f()", asFUNCTION(systemEvent_Factory), asCALL_CDECL);assert(r >= 0);
+	r = engine->RegisterObjectBehaviour("systemEvent", asBEHAVE_ADDREF, "void f()", asMETHOD(systemEvent, Addref), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectBehaviour("systemEvent", asBEHAVE_RELEASE, "void f()", asMETHOD(systemEvent, Release), asCALL_THISCALL);assert(r>=0);
 
 	//register BlackBoard class
 	r = engine->RegisterObjectType("BlackBoard", 0, asOBJ_REF|asOBJ_NOCOUNT);assert(r>=0);
 	r = engine->RegisterObjectMethod("BlackBoard", "int getListLength()", asMETHOD(BlackBoardForScript, getListLength), asCALL_THISCALL);assert(r>=0);
 	r = engine->RegisterObjectMethod("BlackBoard", "void removeSystemEventByIndex(int num)", asMETHOD(BlackBoardForScript, removeSystemEventByIndex), asCALL_THISCALL);assert(r>=0);
-	r = engine->RegisterObjectMethod("BlackBoard", "systemEvent getSystemEventByIndex(int num)", asMETHOD(BlackBoardForScript, getSystemEventByIndex), asCALL_THISCALL);assert(r>=0);
+	r = engine->RegisterObjectMethod("BlackBoard", "systemEvent@ getSystemEventByIndex(EnumTriggerType num)", asMETHOD(BlackBoardForScript, getSystemEventByIndex), asCALL_THISCALL);assert(r>=0);
 	//r = engine->RegisterGlobalProperty("BlackBoard@ blackBoard", b);assert(r>=0);
 	r = engine->RegisterObjectBehaviour("BlackBoard",  asBEHAVE_FACTORY, "BlackBoard@ f()", asFUNCTION(getBlackBoard), asCALL_CDECL);assert(r >= 0);
 
 
 	//register WidgetMgr class
 	r = engine->RegisterObjectType("WidgetMgr", 0, asOBJ_REF|asOBJ_NOCOUNT);assert(r>=0);
-	r = engine->RegisterObjectBehaviour("WidgetMgr",  asBEHAVE_FACTORY, "WidgetMgr@ f()", asFUNCTION(getWidgetMgr()), asCALL_CDECL);assert(r >= 0);
+	r = engine->RegisterObjectBehaviour("WidgetMgr",  asBEHAVE_FACTORY, "WidgetMgr@ f()", asFUNCTION(getWidgetMgr), asCALL_CDECL);assert(r >= 0);
 	r = engine->RegisterObjectMethod("WidgetMgr", "void reload(string path)", asMETHOD(WidgetMgr, reloadXml), asCALL_THISCALL);assert(r >= 0);
+
+	//register NodeMgr class
+	r = engine->RegisterObjectType("NodeMgr", 0, asOBJ_REF|asOBJ_NOCOUNT);assert(r>=0);
+	r = engine->RegisterObjectBehaviour("NodeMgr", asBEHAVE_FACTORY, "NodeMgr@ f()", asFUNCTION(getNodeMgr), asCALL_CDECL); assert(r>=0);
+	r = engine->RegisterObjectMethod("NodeMgr", "void changeNodeStatus(string name, RunStatus status)", asMETHOD(NodeMgr, changeNodeStatus), asCALL_THISCALL);assert(r>=0);
 
 	//register Widget class
 	r = engine->RegisterObjectType("Widget", 0, asOBJ_REF);assert(r>=0);

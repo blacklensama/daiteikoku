@@ -34,11 +34,18 @@ struct Point
 	float y;
 };
 
-struct systemEvent
+class systemEvent
 {
+public:
 	systemEvent();
+	void Addref();
+	void Release();
 	bool operator==(systemEvent s);
 	EnumTriggerType e;
 	Point p;
 	int key;
+protected:
+	int refCount;
 };
+
+systemEvent* systemEvent_Factory();

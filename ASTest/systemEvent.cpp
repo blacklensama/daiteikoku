@@ -114,6 +114,7 @@ bool Point::IsInRange(Point& p1, Point& p2)
 
 systemEvent::systemEvent()
 {
+	refCount = 0;
 	e = kTrig_None;
 }
 
@@ -122,4 +123,22 @@ bool systemEvent::operator==(systemEvent s)
 	if(s.e == e && s.p == p)
 		return true;
 	return false;
+}
+
+systemEvent* systemEvent_Factory()
+{
+	return new systemEvent();
+}
+
+void systemEvent::Addref()
+{
+	refCount++;
+}
+
+void systemEvent::Release()
+{
+	if (--refCount == 0)
+	{
+		delete this;
+	}
 }

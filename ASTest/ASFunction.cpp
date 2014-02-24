@@ -29,3 +29,8 @@ WidgetMgr* getWidgetMgr()
 {
 	return WidgetMgr::Instance();
 }
+
+NodeMgr* getNodeMgr()
+{
+	return NodeMgr::Instance();
+}
